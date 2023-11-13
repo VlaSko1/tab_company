@@ -1,0 +1,1507 @@
+Array
+(
+    [0] => Array
+        (
+            [ID] => crm_control_panel_menu_menu_crm_lead
+            [MENU_ID] => menu_crm_lead
+            [NAME] => Лиды
+            [TITLE] => Список лидов
+            [URL] => /crm/lead/kanban/
+            [ICON] => lead
+            [COUNTER_ID] => crm_lead_all
+            [IS_DISABLED] => true
+            [IS_ACTIVE] => 
+            [TEXT] => Лиды
+            [SUB_LINK] => Array
+                (
+                    [CLASS] => crm-menu-plus-btn
+                    [URL] => /crm/lead/details/0/
+                )
+
+            [IS_LOCKED] => 
+            [CLASS] => crm-menu-lead crm-menu-item-wrap
+            [CLASS_SUBMENU_ITEM] => crm-menu-more-lead
+            [HTML] => 
+            [ON_CLICK] => 
+            [DATA_ID] => menu_crm_lead
+            [MAX_COUNTER_SIZE] => 99
+            [SUPER_TITLE] => 
+            [SORT] => 0
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [1] => Array
+        (
+            [ID] => crm_control_panel_menu_menu_crm_deal
+            [MENU_ID] => menu_crm_deal
+            [NAME] => Сделки
+            [TITLE] => Список сделок
+            [URL] => /crm/deal/list/
+            [ICON] => deal
+            [COUNTER] => 11
+            [COUNTER_ID] => crm_deal_all
+            [IS_ACTIVE] => 
+            [TEXT] => Сделки
+            [SUB_LINK] => Array
+                (
+                    [CLASS] => crm-menu-plus-btn
+                    [URL] => /crm/deal/details/0/
+                )
+
+            [IS_LOCKED] => 
+            [CLASS] => crm-menu-deal crm-menu-item-wrap
+            [CLASS_SUBMENU_ITEM] => crm-menu-more-deal
+            [HTML] => 
+            [ON_CLICK] => 
+            [DATA_ID] => menu_crm_deal
+            [MAX_COUNTER_SIZE] => 99
+            [IS_DISABLED] => false
+            [SUPER_TITLE] => 
+            [SORT] => 1
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [2] => Array
+        (
+            [IS_ACTIVE] => 
+            [ID] => crm_control_panel_menu_crm_catalogue
+            [TEXT] => Товары и Склады
+            [ITEMS] => Array
+                (
+                    [0] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_catalogue:menu_crm_catalog
+                            [MENU_ID] => menu_crm_catalog
+                            [NAME] => Каталог товаров
+                            [URL] => /crm/catalog/
+                            [ICON] => catalog
+                            [IS_ACTIVE] => 
+                            [TEXT] => Каталог товаров
+                            [SUB_LINK] => Array
+                                (
+                                    [CLASS] => crm-menu-plus-btn
+                                    [URL] => /crm/catalog/14/product/0/
+                                )
+
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu-catalog crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-catalog
+                            [TITLE] => 
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => menu_crm_catalog
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 0
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_catalogue:menu_crm_store_docs
+                            [MENU_ID] => menu_crm_store_docs
+                            [NAME] => Складской учёт
+                            [TITLE] => Складской учёт
+                            [URL] => /shop/documents/
+                            [ON_CLICK] => event.preventDefault();BX.SidePanel.Instance.open("/shop/documents/?inventoryManagementSource=crm", {cacheable: false, customLeftBoundary: 0,});
+                            [IS_ACTIVE] => 
+                            [TEXT] => Складской учёт
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [HTML] => 
+                            [DATA_ID] => menu_crm_store_docs
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 1
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                )
+
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [IS_LOCKED] => 
+            [CLASS] => crm-menu- crm-menu-item-wrap
+            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [ON_CLICK] => 
+            [DATA_ID] => crm_catalogue
+            [MAX_COUNTER_SIZE] => 99
+            [SUPER_TITLE] => 
+            [SORT] => 2
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 1
+            [HAS_CHILD] => 
+        )
+
+    [3] => Array
+        (
+            [IS_ACTIVE] => 1
+            [ID] => crm_control_panel_menu_crm_clients
+            [TEXT] => Клиенты
+            [ITEMS] => Array
+                (
+                    [0] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_clients:menu_crm_contact
+                            [MENU_ID] => menu_crm_contact
+                            [NAME] => Контакты
+                            [TITLE] => Список контактов
+                            [URL] => /crm/contact/list/
+                            [ICON] => contact
+                            [COUNTER] => 4
+                            [COUNTER_ID] => crm_contact_c0_all
+                            [IS_ACTIVE] => 
+                            [TEXT] => Контакты
+                            [SUB_LINK] => Array
+                                (
+                                    [CLASS] => crm-menu-plus-btn
+                                    [URL] => /crm/contact/details/0/
+                                )
+
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu-contact crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-contact
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => menu_crm_contact
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 0
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_clients:menu_crm_company
+                            [MENU_ID] => menu_crm_company
+                            [NAME] => Компании
+                            [TITLE] => Список компаний
+                            [URL] => /crm/company/list/
+                            [ICON] => company
+                            [COUNTER] => 1
+                            [COUNTER_ID] => crm_company_c0_all
+                            [IS_ACTIVE] => 1
+                            [TEXT] => Компании
+                            [SUB_LINK] => Array
+                                (
+                                    [CLASS] => crm-menu-plus-btn
+                                    [URL] => /crm/company/details/0/
+                                )
+
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu-company crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-company
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => menu_crm_company
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 1
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_clients:menu_contact_center
+                            [NAME] => Контакт-центр
+                            [URL] => /services/contact_center/
+                            [MENU_ID] => menu_contact_center
+                            [IS_ACTIVE] => 
+                            [TEXT] => Контакт-центр
+                            [ON_CLICK] => BX.SidePanel.Instance.open("/services/contact_center/");return false;
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [DATA_ID] => menu_contact_center
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 2
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                )
+
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [IS_LOCKED] => 
+            [CLASS] => crm-menu- crm-menu-item-wrap
+            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [ON_CLICK] => 
+            [DATA_ID] => crm_clients
+            [MAX_COUNTER_SIZE] => 99
+            [SUPER_TITLE] => 
+            [SORT] => 3
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 1
+            [COUNTER] => 5
+            [HAS_COUNTERS] => 1
+            [COUNTER_ID] => crm_control_panel_menu_crm_clients_counter
+            [HAS_CHILD] => 
+        )
+
+    [4] => Array
+        (
+            [IS_ACTIVE] => 
+            [ID] => crm_control_panel_menu_crm_sales
+            [TEXT] => Продажи
+            [ITEMS] => Array
+                (
+                    [0] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_sales:menu_crm_smart_invoice
+                            [MENU_ID] => menu_crm_smart_invoice
+                            [NAME] => Счета
+                            [URL] => /crm/type/31/list/category/0/
+                            [ICON] => invoice
+                            [IS_ACTIVE] => 
+                            [TEXT] => Счета
+                            [SUB_LINK] => Array
+                                (
+                                    [CLASS] => crm-menu-plus-btn
+                                    [URL] => /crm/type/31/details/0/
+                                )
+
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu-invoice crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-invoice
+                            [TITLE] => 
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => menu_crm_smart_invoice
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 0
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_sales:menu_crm_quote
+                            [MENU_ID] => menu_crm_quote
+                            [NAME] => Предложения
+                            [TITLE] => Список предложений
+                            [URL] => /crm/quote/list/
+                            [ICON] => quote
+                            [IS_DISABLED] => true
+                            [IS_ACTIVE] => 
+                            [TEXT] => Предложения
+                            [SUB_LINK] => Array
+                                (
+                                    [CLASS] => crm-menu-plus-btn
+                                    [URL] => /crm/type/7/details/0/
+                                )
+
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu-quote crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-quote
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => menu_crm_quote
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [SUPER_TITLE] => 
+                            [SORT] => 1
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_sales:menu_sale_center
+                            [NAME] => Центр продаж
+                            [URL] => /saleshub/
+                            [MENU_ID] => menu-sale-center
+                            [IS_ACTIVE] => 
+                            [TEXT] => Центр продаж
+                            [ON_CLICK] => BX.SidePanel.Instance.open("/saleshub/");return false;
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [DATA_ID] => menu_sale_center
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 2
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                )
+
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [IS_LOCKED] => 
+            [CLASS] => crm-menu- crm-menu-item-wrap
+            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [ON_CLICK] => 
+            [DATA_ID] => crm_sales
+            [MAX_COUNTER_SIZE] => 99
+            [SUPER_TITLE] => 
+            [SORT] => 4
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 1
+            [HAS_CHILD] => 
+        )
+
+    [5] => Array
+        (
+            [IS_ACTIVE] => 
+            [ID] => crm_control_panel_menu_crm_analytics
+            [TEXT] => Аналитика
+            [ITEMS] => Array
+                (
+                    [0] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_analytics:analytics_sales_funnel
+                            [NAME] => Воронка продаж
+                            [URL] => /report/analytics/?analyticBoardKey=crm_sales_funnel
+                            [IS_ACTIVE] => 
+                            [TEXT] => Воронка продаж
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => analytics_sales_funnel
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 0
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_analytics:analytics_managers
+                            [NAME] => Эффективность менеджеров
+                            [URL] => /report/analytics/?analyticBoardKey=crm_managers_rating
+                            [IS_ACTIVE] => 
+                            [TEXT] => Эффективность менеджеров
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => analytics_managers
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 1
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_analytics:analytics_dialogs
+                            [NAME] => Аналитика диалогов
+                            [URL] => /services/contact_center/dialog_statistics/
+                            [IS_ACTIVE] => 
+                            [TEXT] => Аналитика диалогов
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => analytics_dialogs
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 2
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_analytics:menu_crm_tracking
+                            [NAME] => Сквозная аналитика
+                            [URL] => /crm/tracking/
+                            [MENU_ID] => menu_crm_tracking
+                            [IS_ACTIVE] => 
+                            [TEXT] => Сквозная аналитика
+                            [ON_CLICK] => BX.SidePanel.Instance.open("/crm/tracking/");return false;
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [DATA_ID] => menu_crm_tracking
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 3
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_analytics:menu_crm_report
+                            [MENU_ID] => menu_crm_report
+                            [NAME] => Конструктор отчётов
+                            [URL] => /crm/reports/report/
+                            [ICON] => report
+                            [IS_DISABLED] => true
+                            [IS_ACTIVE] => 
+                            [TEXT] => Конструктор отчётов
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu-report crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-report
+                            [TITLE] => 
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => menu_crm_report
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [SUPER_TITLE] => 
+                            [SORT] => 4
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                )
+
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [IS_LOCKED] => 
+            [CLASS] => crm-menu- crm-menu-item-wrap
+            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [ON_CLICK] => 
+            [DATA_ID] => crm_analytics
+            [MAX_COUNTER_SIZE] => 99
+            [SUPER_TITLE] => 
+            [SORT] => 5
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 1
+            [HAS_CHILD] => 
+        )
+
+    [6] => Array
+        (
+            [IS_ACTIVE] => 
+            [ID] => crm_control_panel_menu_crm_integrations
+            [TEXT] => Интеграции
+            [ITEMS] => Array
+                (
+                    [0] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_integrations:mail
+                            [NAME] => Почта
+                            [URL] => /mail/
+                            [IS_ACTIVE] => 
+                            [TEXT] => Почта
+                            [ON_CLICK] => BX.SidePanel.Instance.open("/mail/");return false;
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [DATA_ID] => mail
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 0
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_integrations:messengers
+                            [NAME] => Мессенджеры
+                            [URL] => /services/contact_center/
+                            [IS_ACTIVE] => 
+                            [TEXT] => Мессенджеры
+                            [ON_CLICK] => BX.SidePanel.Instance.open("/services/contact_center/");return false;
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [DATA_ID] => messengers
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 1
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_integrations:menu_crm_button
+                            [MENU_ID] => menu_crm_button
+                            [NAME] => Виджет на сайт
+                            [TITLE] => Виджет на сайт
+                            [URL] => /crm/button/
+                            [ICON] => sitebutton
+                            [IS_DISABLED] => true
+                            [IS_ACTIVE] => 
+                            [TEXT] => Виджет на сайт
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu-sitebutton crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-sitebutton
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => menu_crm_button
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [SUPER_TITLE] => 
+                            [SORT] => 2
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_integrations:menu_crm_webform
+                            [MENU_ID] => menu_crm_webform
+                            [NAME] => CRM-формы
+                            [TITLE] => CRM-формы
+                            [URL] => /crm/webform/
+                            [ICON] => webform
+                            [IS_DISABLED] => true
+                            [IS_ACTIVE] => 
+                            [TEXT] => CRM-формы
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu-webform crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-webform
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => menu_crm_webform
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [SUPER_TITLE] => 
+                            [SORT] => 3
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_integrations:menu_contact_center
+                            [NAME] => Контакт-центр
+                            [URL] => /services/contact_center/
+                            [MENU_ID] => menu_contact_center
+                            [IS_ACTIVE] => 
+                            [TEXT] => Контакт-центр
+                            [ON_CLICK] => BX.SidePanel.Instance.open("/services/contact_center/");return false;
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [DATA_ID] => menu_contact_center
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 4
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_integrations:onec
+                            [NAME] => 1С:Бэкофис
+                            [URL] => /onec/
+                            [IS_ACTIVE] => 
+                            [TEXT] => 1С:Бэкофис
+                            [ON_CLICK] => BX.SidePanel.Instance.open("/onec/");return false;
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [DATA_ID] => onec
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 5
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [6] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_integrations:menu_devops
+                            [NAME] => Rest API
+                            [URL] => /devops/
+                            [MENU_ID] => menu_devops
+                            [IS_ACTIVE] => 
+                            [TEXT] => Rest API
+                            [ON_CLICK] => BX.SidePanel.Instance.open("/devops/");return false;
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [DATA_ID] => menu_devops
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 6
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                )
+
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [IS_LOCKED] => 
+            [CLASS] => crm-menu- crm-menu-item-wrap
+            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [ON_CLICK] => 
+            [DATA_ID] => crm_integrations
+            [MAX_COUNTER_SIZE] => 99
+            [SUPER_TITLE] => 
+            [SORT] => 6
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 1
+            [HAS_CHILD] => 
+        )
+
+    [7] => Array
+        (
+            [IS_ACTIVE] => 
+            [ID] => crm_control_panel_menu_crm_settings
+            [TEXT] => Настройки
+            [ITEMS] => Array
+                (
+                    [0] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_settings:menu_crm_configs
+                            [MENU_ID] => menu_crm_configs
+                            [NAME] => Настройки CRM
+                            [TITLE] => Настройки CRM
+                            [URL] => /crm/configs/
+                            [ICON] => settings
+                            [IS_ACTIVE] => 
+                            [TEXT] => Настройки CRM
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu-settings crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-settings
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => menu_crm_configs
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 0
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_settings:my_company
+                            [NAME] => Мои реквизиты
+                            [URL] => /crm/configs/mycompany/
+                            [IS_ACTIVE] => 
+                            [TEXT] => Мои реквизиты
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => my_company
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 1
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_settings:permissions
+                            [NAME] => Права доступа
+                            [URL] => /crm/configs/perms/
+                            [IS_ACTIVE] => 
+                            [TEXT] => Права доступа
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => permissions
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 2
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_settings:sales_center_payment
+                            [NAME] => CRM.Оплата
+                            [URL] => 
+                            [SLIDER_ONLY] => 1
+                            [IS_ACTIVE] => 
+                            [TEXT] => CRM.Оплата
+                            [ON_CLICK] => BX.SidePanel.Instance.open("/bitrix/components/bitrix/salescenter.crmstore/slider.php");return false;
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [DATA_ID] => sales_center_payment
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 3
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_settings:sales_center_delivery
+                            [NAME] => CRM.Доставка
+                            [URL] => 
+                            [SLIDER_ONLY] => 1
+                            [IS_ACTIVE] => 
+                            [TEXT] => CRM.Доставка
+                            [ON_CLICK] => BX.SidePanel.Instance.open("/bitrix/components/bitrix/salescenter.delivery.panel/slider.php?analyticsLabel=salescenterClickDeliveryTile&type=main&mode=main");return false;
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [DATA_ID] => sales_center_delivery
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 4
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [ID] => crm_control_panel_menu_crm_settings:dynamic_list
+                            [NAME] => Список смарт-процессов
+                            [URL] => /crm/type/
+                            [IS_ACTIVE] => 
+                            [TEXT] => Список смарт-процессов
+                            [SUB_LINK] => 
+                            [IS_LOCKED] => 
+                            [CLASS] => crm-menu- crm-menu-item-wrap
+                            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+                            [TITLE] => 
+                            [HTML] => 
+                            [ON_CLICK] => 
+                            [DATA_ID] => dynamic_list
+                            [MAX_COUNTER_SIZE] => 99
+                            [IS_PINNED] => 
+                            [IS_DISABLED] => false
+                            [SUPER_TITLE] => 
+                            [SORT] => 5
+                            [IS_PASSIVE] => 
+                            [HAS_MENU] => 
+                        )
+
+                )
+
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [IS_LOCKED] => 
+            [CLASS] => crm-menu- crm-menu-item-wrap
+            [CLASS_SUBMENU_ITEM] => crm-menu-more-
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [ON_CLICK] => 
+            [DATA_ID] => crm_settings
+            [MAX_COUNTER_SIZE] => 99
+            [SUPER_TITLE] => 
+            [SORT] => 7
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 1
+            [HAS_CHILD] => 
+        )
+
+    [8] => Array
+        (
+            [ID] => crm_control_panel_menu_menu_crm_recycle_bin
+            [MENU_ID] => menu_crm_recycle_bin
+            [NAME] => Корзина
+            [TITLE] => Просмотр и восстановление удалённых лидов, контактов, компаний и сделок.
+            [URL] => /crm/recyclebin/
+            [ICON] => recycle_bin
+            [IS_DISABLED] => true
+            [IS_ACTIVE] => 
+            [TEXT] => Корзина
+            [SUB_LINK] => 
+            [IS_LOCKED] => 
+            [CLASS] => crm-menu-recycle_bin crm-menu-item-wrap
+            [CLASS_SUBMENU_ITEM] => crm-menu-more-recycle_bin
+            [HTML] => 
+            [ON_CLICK] => 
+            [DATA_ID] => menu_crm_recycle_bin
+            [MAX_COUNTER_SIZE] => 99
+            [SUPER_TITLE] => 
+            [SORT] => 8
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [9] => Array
+        (
+            [ID] => crm_control_panel_menu_menu_crm_event
+            [MENU_ID] => menu_crm_event
+            [NAME] => История
+            [TITLE] => История
+            [URL] => /crm/events/
+            [ICON] => event
+            [IS_DISABLED] => true
+            [IS_ACTIVE] => 
+            [TEXT] => История
+            [SUB_LINK] => 
+            [IS_LOCKED] => 
+            [CLASS] => crm-menu-event crm-menu-item-wrap
+            [CLASS_SUBMENU_ITEM] => crm-menu-more-event
+            [HTML] => 
+            [ON_CLICK] => 
+            [DATA_ID] => menu_crm_event
+            [MAX_COUNTER_SIZE] => 99
+            [SUPER_TITLE] => 
+            [SORT] => 9
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [10] => Array
+        (
+            [ID] => crm_control_panel_menu_menu_crm_activity
+            [MENU_ID] => menu_crm_activity
+            [NAME] => Мои дела
+            [TITLE] => Список дел
+            [URL] => /crm/activity/
+            [ICON] => activity
+            [IS_DISABLED] => true
+            [IS_ACTIVE] => 
+            [TEXT] => Мои дела
+            [SUB_LINK] => 
+            [IS_LOCKED] => 
+            [CLASS] => crm-menu-activity crm-menu-item-wrap
+            [CLASS_SUBMENU_ITEM] => crm-menu-more-activity
+            [HTML] => 
+            [ON_CLICK] => 
+            [DATA_ID] => menu_crm_activity
+            [MAX_COUNTER_SIZE] => 99
+            [SUPER_TITLE] => 
+            [SORT] => 10
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+)
+
+
+Array
+(
+    [0] => Array
+        (
+            [TEXT] => Общие
+            [ID] => crm_scope_detail_c_company__main
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_click_main');
+            [IS_ACTIVE] => 1
+            [IS_PASSIVE] => 
+            [IS_LOCKED] => 
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => main
+            [MAX_COUNTER_SIZE] => 99
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 0
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [1] => Array
+        (
+            [TEXT] => Сделки
+            [ID] => crm_scope_detail_c_company__tab_deal
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_click_tab_deal');
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [IS_LOCKED] => 
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => tab_deal
+            [MAX_COUNTER_SIZE] => 99
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 1
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [2] => Array
+        (
+            [TEXT] => Счета
+            [ID] => crm_scope_detail_c_company__tab_relation_smart_invoice
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_click_tab_deal');
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [IS_LOCKED] => 
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => tab_relation_smart_invoice
+            [MAX_COUNTER_SIZE] => 99
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 2
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [3] => Array
+        (
+            [TEXT] => Предложения
+            [ID] => crm_scope_detail_c_company__tab_quote
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_click_tab_quote');
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [IS_LOCKED] => 
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => tab_quote
+            [MAX_COUNTER_SIZE] => 99
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 3
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [4] => Array
+        (
+            [TEXT] => Бизнес-процессы
+            [ID] => crm_scope_detail_c_company__tab_bizproc
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_click_tab_bizproc');
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [IS_LOCKED] => 
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => tab_bizproc
+            [MAX_COUNTER_SIZE] => 99
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 4
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [5] => Array
+        (
+            [TEXT] => Связи
+            [ID] => crm_scope_detail_c_company__tab_tree
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_click_tab_tree');
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [IS_LOCKED] => 
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => tab_tree
+            [MAX_COUNTER_SIZE] => 99
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 5
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [6] => Array
+        (
+            [TEXT] => История
+            [ID] => crm_scope_detail_c_company__tab_event
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_click_tab_event');
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [IS_LOCKED] => 
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => tab_event
+            [MAX_COUNTER_SIZE] => 99
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 6
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [7] => Array
+        (
+            [TEXT] => Портрет
+            [ID] => crm_scope_detail_c_company__tab_portrait
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_click_tab_portrait');
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [IS_LOCKED] => 
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => tab_portrait
+            [MAX_COUNTER_SIZE] => 99
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 7
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [8] => Array
+        (
+            [ID] => crm_scope_detail_c_company__crm_rest_marketplace
+            [TEXT] => Маркет
+            [ON_CLICK] => BX.rest.Marketplace.open({'PLACEMENT':'CRM_COMPANY_DETAIL_TAB'})
+            [TITLE] => 
+            [HTML] => 
+            [URL] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => crm_rest_marketplace
+            [MAX_COUNTER_SIZE] => 99
+            [IS_LOCKED] => 
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 8
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [9] => Array
+        (
+            [TEXT] => Заказы интернет магазинов
+            [ID] => wizart_store_orders
+            [IS_ACTIVE] => 
+            [IS_DISABLED] => 
+            [HTML] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => wizart_store_orders
+            [MAX_COUNTER_SIZE] => 
+            [ON_CLICK] => BX.SidePanel.Instance.open("/workspace");return false;
+            [IS_LOCKED] => 
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 100
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+)
+
+
+Array
+(
+    [0] => Array
+        (
+            [ID] => crm_scope_timeline_c_company__comment
+            [TITLE] => Комментарий
+            [TEXT] => Комментарий
+            [URL] => 
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_timeline_menu', ['comment']);
+            [HTML] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => comment
+            [MAX_COUNTER_SIZE] => 99
+            [IS_LOCKED] => 
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 0
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [1] => Array
+        (
+            [ID] => crm_scope_timeline_c_company__task
+            [TEXT] => Задача
+            [TITLE] => Задача
+            [URL] => 
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_timeline_menu', ['task']);
+            [HTML] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => task
+            [MAX_COUNTER_SIZE] => 99
+            [IS_LOCKED] => 
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 1
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [2] => Array
+        (
+            [ID] => crm_scope_timeline_c_company__sms
+            [TEXT] => SMS/WhatsApp
+            [TITLE] => SMS-сообщение
+            [URL] => 
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_timeline_menu', ['sms']);
+            [HTML] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => sms
+            [MAX_COUNTER_SIZE] => 99
+            [IS_LOCKED] => 
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 2
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [3] => Array
+        (
+            [ID] => crm_scope_timeline_c_company__email
+            [TEXT] => Письмо
+            [TITLE] => Письмо
+            [URL] => 
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_timeline_menu', ['email']);
+            [HTML] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => email
+            [MAX_COUNTER_SIZE] => 99
+            [IS_LOCKED] => 
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 3
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [4] => Array
+        (
+            [ID] => crm_scope_timeline_c_company__meeting
+            [TEXT] => Встреча
+            [TITLE] => Встреча
+            [URL] => 
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_timeline_menu', ['meeting']);
+            [HTML] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => meeting
+            [MAX_COUNTER_SIZE] => 99
+            [IS_LOCKED] => 
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 4
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [5] => Array
+        (
+            [ID] => crm_scope_timeline_c_company__call
+            [TEXT] => Звонок
+            [TITLE] => Звонок
+            [URL] => 
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_timeline_menu', ['call']);
+            [HTML] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => call
+            [MAX_COUNTER_SIZE] => 99
+            [IS_LOCKED] => 
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 5
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [6] => Array
+        (
+            [ID] => crm_scope_timeline_c_company__visit
+            [TEXT] => Визит
+            [TITLE] => Визит
+            [URL] => 
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_timeline_menu', ['visit']);
+            [HTML] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => visit
+            [MAX_COUNTER_SIZE] => 99
+            [IS_LOCKED] => 
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 6
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+    [7] => Array
+        (
+            [ID] => crm_scope_timeline_c_company__activity_rest_applist
+            [TEXT] => Маркет
+            [TITLE] => Маркет
+            [URL] => 
+            [ON_CLICK] => BX.onCustomEvent('company_3_details_timeline_menu', ['activity_rest_applist']);
+            [HTML] => 
+            [CLASS] => 
+            [CLASS_SUBMENU_ITEM] => 
+            [DATA_ID] => activity_rest_applist
+            [MAX_COUNTER_SIZE] => 99
+            [IS_LOCKED] => 
+            [IS_DISABLED] => false
+            [SUB_LINK] => 
+            [SUPER_TITLE] => 
+            [SORT] => 7
+            [IS_ACTIVE] => 
+            [IS_PASSIVE] => 
+            [HAS_MENU] => 
+            [HAS_CHILD] => 
+        )
+
+)
+
+
+Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [entityId] => my-entity
+            [title] => Петров Вал
+            [tabs] => my-tab
+        )
+
+    [1] => Array
+        (
+            [id] => 2
+            [entityId] => my-entity
+            [title] => Алагир
+            [tabs] => my-tab
+        )
+
+    [2] => Array
+        (
+            [id] => 3
+            [entityId] => my-entity
+            [title] => Вилюйск
+            [tabs] => my-tab
+        )
+
+    [3] => Array
+        (
+            [id] => 4
+            [entityId] => my-entity
+            [title] => Минеральные Воды
+            [tabs] => my-tab
+        )
+
+    [4] => Array
+        (
+            [id] => 5
+            [entityId] => my-entity
+            [title] => Вяземский
+            [tabs] => my-tab
+        )
+
+    [5] => Array
+        (
+            [id] => 6
+            [entityId] => my-entity
+            [title] => Алагир
+            [tabs] => my-tab
+        )
+
+    [6] => Array
+        (
+            [id] => 7
+            [entityId] => my-entity
+            [title] => Верхоянск
+            [tabs] => my-tab
+        )
+
+    [7] => Array
+        (
+            [id] => 8
+            [entityId] => my-entity
+            [title] => Всеволодчино
+            [tabs] => my-tab
+        )
+
+    [8] => Array
+        (
+            [id] => 9
+            [entityId] => my-entity
+            [title] => Екатеринбург
+            [tabs] => my-tab
+        )
+
+    [9] => Array
+        (
+            [id] => 10
+            [entityId] => my-entity
+            [title] => Царицын
+            [tabs] => my-tab
+        )
+
+    [10] => Array
+        (
+            [id] => 11
+            [entityId] => my-entity
+            [title] => Олонец
+            [tabs] => my-tab
+        )
+
+)
+
+

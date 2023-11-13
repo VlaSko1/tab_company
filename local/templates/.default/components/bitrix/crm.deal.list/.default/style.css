@@ -1,0 +1,90 @@
+.wrapper {
+  height: 100vh;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper__form {
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  padding: 35px 105px;
+  min-height: 85%;
+}
+.form__title {
+  left: 344px;
+  top: 221px;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 49px;
+  color: #000000;
+  margin-bottom: 45px;
+  text-align: center;
+}
+.form {
+  padding: 0px 23px;
+  box-sizing: border-box;
+  margin: 0;
+}
+.form__block {
+  margin-bottom: 15px;
+}
+.block__text {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #000000;
+  padding-left: 4px;
+  margin: 0px;
+  margin-bottom: 8px;  
+}
+.ui-ctl-element_mod {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #000000;
+  width: 320px;
+}
+.ui-ctl-file-link_block {
+  z-index: 1;
+  display: flex;
+  align-items: start;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 11px;
+  width: 320px;
+  height: var(--ui-field-size);
+  outline: 0;
+  border: 1px solid #c6cdd3;
+  border-radius: 2px;
+  background-color: #fff;
+  color: #535c69;
+  transition: border .3s ease,background-color .3s ease,color .3s ease,padding .3s ease;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.ui-ctl-label-text_mod {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px !important;
+  color: #000000 !important;
+  border-bottom: none !important;
+}
+.ui-ctl-file-link_block-view {
+    min-height: 100px;
+}

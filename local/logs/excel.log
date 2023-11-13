@@ -1,0 +1,270 @@
+
+
+
+
+
+
+Array
+(
+    [FIND] => 
+    [NAME] => 
+    [FIRST_NAME] => Сергей
+    [LAST_NAME] => 
+    [EMAIL] => 
+    [BIRTH_DATE_datesel] => NONE
+    [BIRTH_DATE_from] => 
+    [BIRTH_DATE_to] => 
+    [BIRTH_DATE_days] => 
+    [BIRTH_DATE_month] => 
+    [BIRTH_DATE_quarter] => 
+    [BIRTH_DATE_year] => 
+    [PHONE] => 
+    [DEAL_BINDING] => 
+    [DEAL_BINDING_label] => 
+)
+
+
+Array
+(
+    [FIND] => 
+    [NAME] => 
+    [FIRST_NAME] => 
+    [LAST_NAME] => 
+    [EMAIL] => 
+    [BIRTH_DATE_datesel] => NONE
+    [BIRTH_DATE_from] => 
+    [BIRTH_DATE_to] => 
+    [BIRTH_DATE_days] => 
+    [BIRTH_DATE_month] => 
+    [BIRTH_DATE_quarter] => 
+    [BIRTH_DATE_year] => 
+    [PHONE] => 
+    [CITY] => Array
+        (
+            [0] => 3
+        )
+
+    [CITY_label] => Array
+        (
+            [0] => Минеральные Воды
+        )
+
+    [DEAL_BINDING] => 
+    [DEAL_BINDING_label] => 
+)
+
+
+
+
+
+
+
+
+Array
+(
+    [FIND] => 
+    [NAME] => Владимир
+    [FIRST_NAME] => 
+    [LAST_NAME] => 
+    [EMAIL] => 
+    [BIRTH_DATE_datesel] => NONE
+    [BIRTH_DATE_from] => 
+    [BIRTH_DATE_to] => 
+    [BIRTH_DATE_days] => 
+    [BIRTH_DATE_month] => 
+    [BIRTH_DATE_quarter] => 
+    [BIRTH_DATE_year] => 
+    [PHONE] => 
+    [DEAL_BINDING] => 
+    [DEAL_BINDING_label] => 
+)
+
+
+17
+
+Array
+(
+    [FIND] => 
+    [NAME] => 
+    [FIRST_NAME] => 
+    [LAST_NAME] => 
+    [EMAIL] => 
+    [BIRTH_DATE_datesel] => CURRENT_DAY
+    [BIRTH_DATE_from] => 
+    [BIRTH_DATE_to] => 
+    [BIRTH_DATE_days] => 
+    [BIRTH_DATE_month] => 
+    [BIRTH_DATE_quarter] => 
+    [BIRTH_DATE_year] => 
+    [PHONE] => 
+    [DEAL_BINDING] => 
+    [DEAL_BINDING_label] => 
+)
+
+
+Array
+(
+    [FIND] => 
+    [NAME] => 
+    [FIRST_NAME] => 
+    [LAST_NAME] => 
+    [EMAIL] => 
+    [BIRTH_DATE_datesel] => EXACT
+    [BIRTH_DATE_from] => 09.11.2022
+    [BIRTH_DATE_to] => 09.11.2022
+    [BIRTH_DATE_days] => 
+    [BIRTH_DATE_month] => 
+    [BIRTH_DATE_quarter] => 
+    [BIRTH_DATE_year] => 
+    [PHONE] => 
+    [DEAL_BINDING] => 
+    [DEAL_BINDING_label] => 
+)
+
+
+Array
+(
+    [FIND] => Гусиноозерск
+    [NAME] => 
+    [FIRST_NAME] => 
+    [LAST_NAME] => 
+    [EMAIL] => 
+    [BIRTH_DATE_datesel] => NONE
+    [BIRTH_DATE_from] => 
+    [BIRTH_DATE_to] => 
+    [BIRTH_DATE_days] => 
+    [BIRTH_DATE_month] => 
+    [BIRTH_DATE_quarter] => 
+    [BIRTH_DATE_year] => 
+    [PHONE] => 
+    [DEAL_BINDING] => 
+    [DEAL_BINDING_label] => 
+)
+
+
+Array
+(
+    [FIND] => 09.11.2022
+    [NAME] => 
+    [FIRST_NAME] => 
+    [LAST_NAME] => 
+    [EMAIL] => 
+    [BIRTH_DATE_datesel] => NONE
+    [BIRTH_DATE_from] => 
+    [BIRTH_DATE_to] => 
+    [BIRTH_DATE_days] => 
+    [BIRTH_DATE_month] => 
+    [BIRTH_DATE_quarter] => 
+    [BIRTH_DATE_year] => 
+    [PHONE] => 
+    [DEAL_BINDING] => 
+    [DEAL_BINDING_label] => 
+)
+
+
+Array
+(
+    [FIND] => 09.11.2022
+    [NAME] => 
+    [FIRST_NAME] => 
+    [LAST_NAME] => 
+    [EMAIL] => 
+    [BIRTH_DATE_datesel] => NONE
+    [BIRTH_DATE_from] => 
+    [BIRTH_DATE_to] => 
+    [BIRTH_DATE_days] => 
+    [BIRTH_DATE_month] => 
+    [BIRTH_DATE_quarter] => 
+    [BIRTH_DATE_year] => 
+    [PHONE] => 
+    [DEAL_BINDING] => 
+    [DEAL_BINDING_label] => 
+)
+
+
+Array
+(
+    [FIND] => 
+    [NAME] => 
+    [FIRST_NAME] => 
+    [LAST_NAME] => 
+    [EMAIL] => 
+    [BIRTH_DATE_datesel] => NONE
+    [BIRTH_DATE_from] => 
+    [BIRTH_DATE_to] => 
+    [BIRTH_DATE_days] => 
+    [BIRTH_DATE_month] => 
+    [BIRTH_DATE_quarter] => 
+    [BIRTH_DATE_year] => 
+    [PHONE] => 
+    [DEAL_BINDING] => 
+    [DEAL_BINDING_label] => 
+)
+
+
+Array
+
+Array
+
+undefined
+
+undefined
+
+undefined
+
+undefined
+
+undefined
+
+undefined
+
+undefined
+
+
+
+
+
+ssdfsdf
+
+хранилище создано
+
+папка создана
+
+файл создан
+
+файл создан
+
+http://192.168.0.105/~l94Fj
+
+http://192.168.0.105/~Y3owW
+
+http://192.168.0.105/~Eey2O
+
+http://192.168.0.105/~ea1J6
+
+/home/bitrix/www/upload/test/2022-11-10-12-44-20.xlsx
+
+http://192.168.0.105/~5993u
+
+/company/personal/user/1/disk/file/2022-11-10-12-57-04.xlsx
+
+234Впереди Id файла
+
+235Впереди Id файла
+
+работает удаление файла c id: 244
+
+Файл c id: 258 найден
+
+/upload/disk/5b4/sdy7j77m39xljpvx0w13w2rjyv65q9z7
+
+/home/bitrix/www/upload/test/2022-11-12-13-10-49.xlsx
+
+string
+
+string
+
+string
+
+string
+
