@@ -22,7 +22,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
     
     public static $simbolCode = 'applications';
 
-    public static $gridName = 'list_form';
+    public static $gridName = 'order_grid';
 
     public function sortNavGet()
     {

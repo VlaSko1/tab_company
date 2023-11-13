@@ -7,5 +7,3 @@ if (file_exists(__DIR__ . "/autoload.php")) {
 require_once(__DIR__ . '/constant.php');
 require_once(__DIR__ . '/events.php');
 require_once(__DIR__ . '/functions.php');
-require_once(__DIR__ . '/agents.php');
-require_once(__DIR__ . '/js.php');
