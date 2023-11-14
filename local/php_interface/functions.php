@@ -2,7 +2,7 @@
     die();
 
 
-CModule::IncludeModule("workflow", "bizproc", "iblock", 'crm');
+// CModule::IncludeModule("workflow", "bizproc", "iblock", 'crm');
 
 function onEntityDetailsTabs($entityID, $entityTypeID, $eventName, $eventTab) 
 {

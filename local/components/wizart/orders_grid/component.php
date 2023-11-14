@@ -1,7 +1,7 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 CJSCore::Init(array('ajax', 'window', "jquery", "ui", 'popup', "sidepanel"));
-$APPLICATION->SetTitle("Workspace");
+$APPLICATION->SetTitle("Orders");
 \Bitrix\Main\Loader::IncludeModule('crm');
 \Bitrix\Main\UI\Extension::load('ui.entity-selector');
 \Bitrix\Main\Loader::includeModule('ui'); 
@@ -170,30 +170,5 @@ while($row = $res->GetNext()) {
 	];
 	
 }
-
-$arResult['generalButton'] = new \Bitrix\UI\Buttons\Split\ApplyButton([
-  	'text' => "Общее"
-]);
-
-$arResult['settingsButton'] = new \Bitrix\UI\Buttons\SettingsButton([
-  
-]);
-
-$arResult['createButton'] = new \Bitrix\UI\Buttons\CreateButton([
-	"click" => new \Bitrix\UI\Buttons\JsCode(
-		"BX.SidePanel.Instance.open('/form_sidepanel/index.php', {
-			'width': 800,
-		})" 
-	),
-	"text" => "Добавить"
-]);
-
-$arResult['excelButton'] = new \Bitrix\UI\Buttons\Button([
-	"color" => \Bitrix\UI\Buttons\Color::SECONDARY,
-	"click" => new \Bitrix\UI\Buttons\JsCode(
-		"clickBtnExcel('".$arResult['list_id']."');"
-	),
-	"text" => "Выгрузка в Excel"
-]);
 
 $this->includeComponentTemplate();

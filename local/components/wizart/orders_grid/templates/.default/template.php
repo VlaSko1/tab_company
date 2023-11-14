@@ -19,8 +19,6 @@
 		'ENABLE_LABEL' => true,
 	]);
 ?>
-	<div id="addDeal" style="display: none">
-  	<p>Связать элемент <b>ID</b> = <span id="bind_id"></span> со сделкой:</p>
 
 <?php if (!empty($arParams['AJAX_LOADER'])) { ?>
     <script>

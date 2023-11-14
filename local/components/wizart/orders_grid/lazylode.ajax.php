@@ -2,8 +2,7 @@
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_before.php');
 use Bitrix\Main\Application;
-use Bitrix\Main\Diag\Debug as Debug;
-Debug::writeToFile("Работает код!",'', '/local/logs/bug.log');
+
 define('NO_KEEP_STATISTIC', 'Y');
 define('NO_AGENT_STATISTIC', 'Y');
 define('NO_AGENT_CHECK', true);
@@ -59,7 +58,7 @@ $APPLICATION->IncludeComponent(
     [
         'PLAIN_VIEW' => true,
         'USE_PADDING' => true,
-        'POPUP_COMPONENT_NAME' => 'wizart:order_grid',
+        'POPUP_COMPONENT_NAME' => 'wizart:orders_grid',
         'POPUP_COMPONENT_TEMPLATE_NAME' => '',
         'POPUP_COMPONENT_PARAMS' => $componentParams
     ]
