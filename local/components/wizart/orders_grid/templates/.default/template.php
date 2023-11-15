@@ -3,13 +3,6 @@
 	use Bitrix\Main\Grid\Panel\Actions;
 	use Bitrix\Main\Localization\Loc;
 
-	\Bitrix\UI\Toolbar\Facade\Toolbar::addButton($arResult['generalButton']);
-
-	\Bitrix\UI\Toolbar\Facade\Toolbar::addButton($arResult['settingsButton']);
-
-	\Bitrix\UI\Toolbar\Facade\Toolbar::addButton($arResult['createButton']);
-
-	\Bitrix\UI\Toolbar\Facade\Toolbar::addButton($arResult['excelButton']);
 
 	\Bitrix\UI\Toolbar\Facade\Toolbar::addFilter([
 		'GRID_ID' => $arResult['list_id'],
@@ -82,41 +75,6 @@
 		'SHOW_TOTAL_COUNTER'        => true,
 		'SHOW_PAGESIZE'             => true,
 		'SHOW_ACTION_PANEL'         => true,
-		'ACTION_PANEL' 				=> [
-			'GROUPS' => [ 
-				'TYPE' => [ 
-					'ITEMS' => [ 
-						[
-							'ID' => 'delete',
-							'TYPE' => 'BUTTON',
-							'TEXT' => 'Удалить',
-							'CLASS' => 'icon remove',
-							'ONCHANGE' => [
-								[
-									'ACTION' => Actions::CALLBACK,
-									'CONFIRM' => true,
-									'CONFIRM_APPLY_BUTTON' => 'Подтвердить',
-									'DATA' => array(
-										array(
-											'JS' => "
-												let json = BX.Main.gridManager.getById('" . $arResult['list_id'] . "').instance.rows.getSelectedIds()
-												
-												BX.ajax.runComponentAction('wizart:workspace','ajaxRequestDel',{
-													mode: 'class',
-													data: {
-														json
-													}			
-												}).then(r => r?BX.Main.gridManager.getInstanceById('" . $arResult['list_id'] . "').reloadTable():location.reload());
-											",
-										),
-									),
-								]
-							]
-						],
-					], 
-				] 
-			], 
-		],
 		'ALLOW_COLUMNS_SORT'        => true,
 		'ALLOW_COLUMNS_RESIZE'      => true,
 		'ALLOW_HORIZONTAL_SCROLL'   => true,
