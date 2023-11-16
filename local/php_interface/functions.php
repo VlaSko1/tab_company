@@ -21,7 +21,8 @@ function onEntityDetailsTabs($entityID, $entityTypeID, $eventName, $eventTab)
                        'id' => 'store_orders',
                         'name' => 'Заказы интернет-магазина',
                         'loader' => array(
-                            'serviceUrl' => '/local/components/wizart/order_grid/lazylode.ajax.php?site=' . \SITE_ID . '&' . \bitrix_sessid_get()),
+                            'serviceUrl' => '/local/components/wizart/orders_grid/lazyload.ajax.php?site=' . 
+                                \SITE_ID . '&' . \bitrix_sessid_get() . '&idCompany=' . $idCompany ),
                         );
                 
                     

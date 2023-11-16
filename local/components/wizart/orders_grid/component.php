@@ -13,7 +13,7 @@ use Bitrix\Main\UI\PageNavigation;
 
 $arResult['companyID'] = isset($_REQUEST['idCompany']) ? $_REQUEST['idCompany'] : '';
 
-$arResult['iblock_id'] = CIBlock::GetList(array(), array("CODE" => $this::$simbolCode), false, false, array("IBLOCK_ID"))->GetNext()['ID'];
+/*$arResult['iblock_id'] = CIBlock::GetList(array(), array("CODE" => $this::$simbolCode), false, false, array("IBLOCK_ID"))->GetNext()['ID'];
 $arResult['list_id'] = $this::$gridName;
 $arResult['grid_options'] = new GridOptions($arResult['list_id']);
 $arResult['sort'] = $arResult['grid_options'] -> GetSorting(['sort' => ['DATE_CREATE' => 'DESC'], 'vars' => ['by' => 'by', 'order' => 'order']]);
@@ -171,6 +171,6 @@ while($row = $res->GetNext()) {
 		'actions' => $action,
 	];
 	
-}
+}*/
 
 $this->includeComponentTemplate();

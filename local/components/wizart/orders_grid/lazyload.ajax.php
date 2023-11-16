@@ -1,7 +1,7 @@
 <?php
-if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_before.php');
 use Bitrix\Main\Application;
+use Bitrix\Main\Diag\Debug as Debug; // Удали
 
 define('NO_KEEP_STATISTIC', 'Y');
 define('NO_AGENT_STATISTIC', 'Y');
@@ -16,15 +16,7 @@ if ($siteID !== '') {
 }
 
 
-
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
-    die();
-}
-
-/**
- * Проверка сессии
- */
-if (!check_bitrix_sessid()) {
     die();
 }
 

@@ -4,13 +4,13 @@
 	use Bitrix\Main\Localization\Loc;
 
 
-	\Bitrix\UI\Toolbar\Facade\Toolbar::addFilter([
+	/*\Bitrix\UI\Toolbar\Facade\Toolbar::addFilter([
 		'GRID_ID' => $arResult['list_id'],
 		'FILTER_ID' => $arResult['list_id'],
 		'FILTER' => $arResult['ui_filter'],
 		'ENABLE_LIVE_SEARCH' => true,
 		'ENABLE_LABEL' => true,
-	]);
+	]);*/
 ?>
 
 <?php if (!empty($arParams['AJAX_LOADER'])) { ?>
@@ -27,7 +27,7 @@
 <?php } ?>
 <?
 
-	$APPLICATION->IncludeComponent(
+	/*$APPLICATION->IncludeComponent(
 			'bitrix:main.user.selector',
 			' ',
 			[
@@ -46,12 +46,12 @@
 						'enableUsers' => 'N',
 					]
 			]
-	);
+	);*/
 ?>
-</div>
+
 
 <?
-	$APPLICATION->IncludeComponent('bitrix:main.ui.grid', '', [
+	/*$APPLICATION->IncludeComponent('bitrix:main.ui.grid', '', [
 		'GRID_ID' => $arResult['list_id'],
 		'COLUMNS' => $arResult['columns'],
 		'ROWS' => $arResult['list'],
@@ -81,5 +81,5 @@
 		'ALLOW_SORT'                => true,
 		'ALLOW_PIN_HEADER'          => true,
 		'AJAX_OPTION_HISTORY'       => 'N',
-	]);
+	]);*/
 ?>
