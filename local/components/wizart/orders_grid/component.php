@@ -13,9 +13,16 @@ use Bitrix\Main\UI\PageNavigation;
 
 $arResult['companyID'] = isset($_REQUEST['idCompany']) ? $_REQUEST['idCompany'] : '';
 
-/*$arResult['iblock_id'] = CIBlock::GetList(array(), array("CODE" => $this::$simbolCode), false, false, array("IBLOCK_ID"))->GetNext()['ID'];
+$arResult['data'] = $this->getData();
+
 $arResult['list_id'] = $this::$gridName;
 $arResult['grid_options'] = new GridOptions($arResult['list_id']);
+
+
+
+/*$arResult['iblock_id'] = CIBlock::GetList(array(), array("CODE" => $this::$simbolCode), false, false, array("IBLOCK_ID"))->GetNext()['ID'];
+
+
 $arResult['sort'] = $arResult['grid_options'] -> GetSorting(['sort' => ['DATE_CREATE' => 'DESC'], 'vars' => ['by' => 'by', 'order' => 'order']]);
 $arResult['nav_params'] = $arResult['grid_options'] -> GetNavParams();
 $arResult['nav'] = new PageNavigation($arResult['list_id']);

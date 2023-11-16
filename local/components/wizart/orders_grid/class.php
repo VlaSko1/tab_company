@@ -15,7 +15,16 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
     protected $errorCollection;
     
 
-    public static $gridName = 'order_grid';
+    public static  $gridName = 'order_grid';
+
+    public static  $httpLink = 'https://middle-crm-predprod.middle-task.boxberry.ru/';
+
+    public static $rest = 'v1/parcels';
+
+    public static  $token = 'Hello';
+
+
+    public static  $fild1CName = '';
 
     public function sortNavGet()
     {
@@ -49,4 +58,27 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
     }
 
 
+    /**
+     * Get data from API
+     * @params array - array params for link
+     * @return data 
+     */
+    public function getData(array $params=[]) 
+    {
+        $fullLink = self::$httpLink . self::$rest . '?token=' . self::$token;
+        $params['searchParameters.shopCodes'] = 5555555;
+        $params['page.offset'] = 0;
+        $params['page.limit'] = 20;
+        $ch = curl_init();
+        $token = self::$token;
+        curl_setopt($ch, CURLOPT_URL, $fullLink . '&' . http_build_query($params));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Authorization: Bearer {$token}"));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    
+        $response = curl_exec($ch);
+        $data = json_decode($response, true);
+
+        return $data;
+    }
 }

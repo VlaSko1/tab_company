@@ -3,7 +3,6 @@
 	use Bitrix\Main\Grid\Panel\Actions;
 	use Bitrix\Main\Localization\Loc;
 
-
 	/*\Bitrix\UI\Toolbar\Facade\Toolbar::addFilter([
 		'GRID_ID' => $arResult['list_id'],
 		'FILTER_ID' => $arResult['list_id'],
@@ -12,7 +11,8 @@
 		'ENABLE_LABEL' => true,
 	]);*/
 ?>
-
+<h1><?php echo $arResult['companyID'] ?></h1>
+<h4><?php print_r($arResult['data']) ?></h4>
 <?php if (!empty($arParams['AJAX_LOADER'])) { ?>
     <script>
         BX.addCustomEvent('Grid::beforeRequest', function (gridData, argse) {
