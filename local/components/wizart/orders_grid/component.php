@@ -6,8 +6,8 @@ $APPLICATION->SetTitle("Orders");
 \Bitrix\Main\UI\Extension::load('ui.entity-selector');
 \Bitrix\Main\Loader::includeModule('ui'); 
 
-CModule::IncludeModule("iblock");
-use \Bitrix\Iblock\PropertyEnumerationTable;
+//CModule::IncludeModule("iblock");
+//use \Bitrix\Iblock\PropertyEnumerationTable;
 use Bitrix\Main\Grid\Options as GridOptions;
 use Bitrix\Main\UI\PageNavigation;
 
@@ -16,14 +16,115 @@ $arResult['companyID'] = isset($_REQUEST['idCompany']) ? $_REQUEST['idCompany'] 
 $arResult['data'] = $this->getData();
 
 $arResult['list_id'] = $this::$gridName;
+$arResult['filter_id'] = $this::$filterName;
+
 $arResult['grid_options'] = new GridOptions($arResult['list_id']);
-
-
-
-/*$arResult['iblock_id'] = CIBlock::GetList(array(), array("CODE" => $this::$simbolCode), false, false, array("IBLOCK_ID"))->GetNext()['ID'];
-
-
 $arResult['sort'] = $arResult['grid_options'] -> GetSorting(['sort' => ['DATE_CREATE' => 'DESC'], 'vars' => ['by' => 'by', 'order' => 'order']]);
+
+$arResult['columns'] = [];
+$arResult['columns'][] = ['id' => 'trackNumber', 'name' => 'Трек-номер', 'sort' => 'trackNumber', 'default' => true];
+$arResult['columns'][] = ['id' => 'invoiceNumber', 'name' => 'Номер ЭН', 'sort' => 'invoiceNumber', 'default' => true];
+$arResult['columns'][] = ['id' => 'orderNumber', 'name' => 'Номер заказа ИМ', 'sort' => 'orderNumber', 'default' => true];
+$arResult['columns'][] = ['id' => 'createDate', 'name' => 'Дата создания заказа', 'sort' => 'createDate', 'default' => true];
+$arResult['columns'][] = ['id' => 'storeDate', 'name' => 'Срок хранения', 'sort' => 'storeDate', 'default' => true];
+$arResult['columns'][] = ['id' => 'return', 'name' => 'Признак возврата', 'sort' => 'return', 'default' => true];
+$arResult['columns'][] = ['id' => 'declaredValue', 'name' => 'Объявленная стоимость, руб.', 'sort' => 'declaredValue', 'default' => true];
+$arResult['columns'][] = ['id' => 'amountPay', 'name' => 'Сумма к уплате, руб.', 'sort' => 'amountPay', 'default' => true];
+$arResult['columns'][] = ['id' => 'deliveryCost', 'name' => 'Стоимость доставки, руб.', 'sort' => 'deliveryCost', 'default' => true];
+$arResult['columns'][] = ['id' => 'paymentType', 'name' => 'Тип оплаты', 'sort' => 'paymentType', 'default' => true];
+$arResult['columns'][] = ['id' => 'actualWeight', 'name' => 'Фактический вес, кг', 'sort' => 'actualWeight', 'default' => true];
+$arResult['columns'][] = ['id' => 'deliveryType', 'name' => 'Вид доставки', 'sort' => 'deliveryType', 'default' => true];
+$arResult['columns'][] = ['id' => 'issueType', 'name' => 'Тип выдачи', 'sort' => 'issueType', 'default' => true];
+$arResult['columns'][] = ['id' => 'barcodes', 'name' => 'Места', 'sort' => 'barcodes', 'default' => true];
+
+$data = $arResult['data']['parcels'];
+for ($i = 0; $i < count($data); $i++) {
+  
+	$arResult['list'][] = [
+		'data' => [
+					"trackNumber" => $data[$i]['trackNumber'],
+					"invoiceNumber" => $data[$i]['invoiceNumber'],
+					"orderNumber" => $data[$i]['orderNumber'],
+					"createDate" => $this->getDateTimeStrFromStr($data[$i]['createDate']),
+					"storeDate" => $data[$i]['storeDate'],
+					"return" => $data[$i]['return'] ? 'Да' : 'Нет',
+					"declaredValue" => $this->getStrCost($data[$i]['declaredValue']),
+					"amountPay" => $this->getStrCost($data[$i]['amountPay']),
+					"deliveryCost" => $this->getStrCost($data[$i]['deliveryCost']),
+					"paymentType" => $this->getPaymentType($data[$i]['paymentType']),
+					"actualWeight" => $data[$i]['actualWeight'],
+					"deliveryType" => $this->getDeliveryType($data[$i]['deliveryType']),
+					"issueType" => $this->getIssueType($data[$i]['issueType']),
+					"barcodes" => count($data[$i]['barcodes']),
+			],
+	];
+	
+}
+
+
+$arResult['ui_filter'] = [
+	['id' => 'trackNumber', 'name' => 'Трек-номер', 'type' => 'text', 'default' => true],
+	['id' => 'invoiceNumber', 'name' => 'Номер ЭН', 'type' => 'text', ],
+	['id' => 'orderNumber', 'name' => 'Номер заказа ИМ', 'type' => 'text', ],
+	['id' => 'createDate', 'name' => 'Дата создания заказа', 'type' => 'date', 
+		"exclude" => array(
+			\Bitrix\Main\UI\Filter\DateType::YESTERDAY,
+			\Bitrix\Main\UI\Filter\DateType::CURRENT_DAY,
+			\Bitrix\Main\UI\Filter\DateType::TOMORROW,
+			\Bitrix\Main\UI\Filter\DateType::CURRENT_WEEK,
+			\Bitrix\Main\UI\Filter\DateType::CURRENT_MONTH,
+			\Bitrix\Main\UI\Filter\DateType::CURRENT_QUARTER,
+			\Bitrix\Main\UI\Filter\DateType::LAST_7_DAYS,
+			\Bitrix\Main\UI\Filter\DateType::LAST_30_DAYS,
+			\Bitrix\Main\UI\Filter\DateType::LAST_60_DAYS,
+			\Bitrix\Main\UI\Filter\DateType::LAST_90_DAYS,
+			\Bitrix\Main\UI\Filter\DateType::PREV_DAYS,
+			\Bitrix\Main\UI\Filter\DateType::NEXT_DAYS,
+			\Bitrix\Main\UI\Filter\DateType::QUARTER,
+			\Bitrix\Main\UI\Filter\DateType::YEAR,
+			\Bitrix\Main\UI\Filter\DateType::EXACT,
+			\Bitrix\Main\UI\Filter\DateType::LAST_WEEK,
+			\Bitrix\Main\UI\Filter\DateType::LAST_MONTH,
+			\Bitrix\Main\UI\Filter\DateType::NEXT_WEEK,
+			\Bitrix\Main\UI\Filter\DateType::NEXT_MONTH,
+			\Bitrix\Main\UI\Filter\DateType::MONTH,
+		)
+	],
+	
+];
+
+$arResult['filterOption'] = new Bitrix\Main\UI\Filter\Options($arResult['filter_id']);
+
+
+$arResult['filterData'] = $arResult['filterOption'] -> getFilter([]);
+
+foreach ($arResult['filterData'] as $k => $v) {
+	if($k == 'FIND' && $v) {
+		$arResult['filterData'][] = array(
+		"LOGIC" => "OR",
+		array("trackNumber" => "%".$v."%"),
+		array("invoiceNumber" => "%".$v."%"),
+		array("orderNumber" => "%".$v."%"),
+		array('createDate' => "%".$v."%"),
+		);
+	} else if ($k == 'trackNumber' && $v) {
+		$arResult['filterData']['trackNumber'] = "%".$v."%";
+	} else if ($k == 'invoiceNumber' && $v) {
+		$arResult['filterData']['invoiceNumber'] = "%".$v."%";
+	} else if ($k == 'orderNumber' && $v) {
+		$arResult['filterData']['orderNumber'] = "%".$v."%";
+	} else if ($k == 'createDate_to' && $v) {
+		$arResult['filterData']['createDate'] = "%". explode(' ', $v)[0] ."%";
+	}  else {
+		$arResult['filterData'][$k] = $v;
+	}
+}
+$arResult['filterData']['ACTIVE'] = "Y";
+
+/*
+
+
+
 $arResult['nav_params'] = $arResult['grid_options'] -> GetNavParams();
 $arResult['nav'] = new PageNavigation($arResult['list_id']);
 $arResult['nav'] -> allowAllRecords(true)
@@ -104,80 +205,7 @@ foreach ($arResult['filterData'] as $k => $v) {
 $arResult['filterData']['IBLOCK_ID'] = $arResult['iblock_id'];
 $arResult['filterData']['ACTIVE'] = "Y";
 
-$res = CIBlockElement::GetList(
-	$arResult['sort']['sort'],
-	$arResult['filterData'],
-	false,
-	$arResult['nav_params'],
-	['ID', 'NAME', 'PROPERTY_FIRST_NAME', 'PROPERTY_LAST_NAME', 'PROPERTY_EMAIL', 'PROPERTY_BIRTH_DATE', 'PROPERTY_PHONE', 'PROPERTY_CITY', 'PROPERTY_FILE', 'PROPERTY_DEAL_BINDING']
-);
 
-$arResult['columns'] = [];
-$arResult['columns'][] = ['id' => 'ID', 'name' => 'ID', 'sort' => 'ID', 'default' => true];
-$arResult['columns'][] = ['id' => 'NAME', 'name' => 'Название', 'sort' => 'NAME', 'default' => true];
-$arResult['columns'][] = ['id' => 'FIRST_NAME', 'name' => 'Имя', 'sort' => 'PROPERTY_FIRST_NAME', 'default' => true];
-$arResult['columns'][] = ['id' => 'LAST_NAME', 'name' => 'Фамилия', 'sort' => 'PROPERTY_LAST_NAME', 'default' => true];
-$arResult['columns'][] = ['id' => 'EMAIL', 'name' => 'Email', 'sort' => 'PROPERTY_EMAIL', 'default' => true];
-$arResult['columns'][] = ['id' => 'BIRTH_DATE', 'name' => 'День рождения', 'sort' => 'PROPERTY_BIRTH_DATE', 'default' => true];
-$arResult['columns'][] = ['id' => 'PHONE', 'name' => 'Телефон', 'sort' => 'PROPERTY_PHONE', 'default' => true];
-$arResult['columns'][] = ['id' => 'CITY', 'name' => 'Город', 'sort' => 'PROPERTY_CITY', 'default' => true];
-$arResult['columns'][] = ['id' => 'FILE', 'name' => 'Файл', 'sort' => 'PROPERTY_FILE', 'default' => true];
-$arResult['columns'][] = ['id' => 'DEAL_BINDING', 'name' => 'Сделка', 'sort' => 'PROPERTY_DEAL_BINDING', 'default' => true]; 
-
-while($row = $res->GetNext()) {
-	$file = CFile::ShowImage($row['PROPERTY_FILE_VALUE'], 100, 100, "border=0", "", true);
-	$arDealRes = CCrmDeal::GetByID($row['PROPERTY_DEAL_BINDING_VALUE']);
-	$getDeal = null;
-	if ($arDealRes) {
-	$getDeal = "<a href='/crm/deal/details/{$arDealRes['ID']}/' 
-							target='_blank' 
-							onmouseover=\"dealViewInfo('{$arDealRes['ASSIGNED_BY_NAME']}', '{$arDealRes['ASSIGNED_BY_LAST_NAME']}', {$arDealRes['ASSIGNED_BY_ID']}, {$arDealRes['OPPORTUNITY']}, this)\">
-									{$arDealRes['TITLE']}								
-					</a>";
-	}
-
-	$action = [
-		[
-			'text' => 'Просмотр',
-			'default' => true,
-			'onclick' => "detailEl(" . $row['ID'] . ")", 
-		], 
-		[
-			'text' => 'Удалить',
-			'default' => true,
-			'onclick' => "BX.ajax.runComponentAction('wizart:workspace','ajaxRequestDel',{
-						mode: 'class',
-						data: {
-							'json[]': '" . $row['ID'] . "'
-						}
-						}).then(r => r?BX.Main.gridManager.getInstanceById('" . $arResult['list_id'] . "').reloadTable():location.reload());"
-		],
-	];
-
-	if (($row['PROPERTY_DEAL_BINDING_VALUE'] === null) OR ($row['PROPERTY_DEAL_BINDING_VALUE'] == 'D_')){
-        $action[] = [
-            'text'    => 'Связать c',
-            'default' => false,
-            'onclick' => 'bindDeal('.$row['ID'].', \''. $arResult['list_id'].'\')'
-        ];
-  }
-  
-	$arResult['list'][] = [
-		'data' => [
-					"ID" => $row['ID'],
-					"NAME" => $row['NAME'],
-					"FIRST_NAME" => $row['PROPERTY_FIRST_NAME_VALUE'],
-					"LAST_NAME" => $row['PROPERTY_LAST_NAME_VALUE'],
-					"EMAIL" => $row['PROPERTY_EMAIL_VALUE'],
-					"BIRTH_DATE" => $row['PROPERTY_BIRTH_DATE_VALUE'],
-					"PHONE" => $row['PROPERTY_PHONE_VALUE'],
-					"CITY" => $row['PROPERTY_CITY_VALUE'],
-					"FILE" => $file,
-					'DEAL_BINDING' => $getDeal,
-			],
-		'actions' => $action,
-	];
-	
-}*/
+*/
 
 $this->includeComponentTemplate();
