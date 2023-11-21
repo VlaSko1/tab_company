@@ -50,17 +50,34 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
 
     public function executeComponent()
     {
-        $this->arResult['list_id'] = static::GRID_ID;
+        $this->arResult['grid_id'] = static::GRID_ID;
         $this->arResult['filter_id'] = static::FILTER_ID;
-        $this->arResult['companyID'] = isset($_REQUEST['idCompany']) ? $_REQUEST['idCompany'] : '';
+        $this->filter = (new \Bitrix\Main\UI\Filter\Options($this->arResult['filter_id']))->getFilter();
+        $this->grid = new \Bitrix\Main\Grid\Options($this->arResult['grid_id']);
+        $sortOptions = $this->grid->GetSorting();
+        $this->sortOptions = $sortOptions["sort"];
+        $this->nav = new \Bitrix\Main\UI\PageNavigation( $this->arResult['grid_id']);
+        $nav_params = $this->grid->GetNavParams();
+        $this->nav->allowAllRecords(true)
+            ->setPageSize($nav_params["nPageSize"])
+            ->initFromUri();
+        
         $this->arResult['params'] = $this->getParams();
+        $this->arResult['filter'] = $this->getFilterOptions();
         $this->arResult['data'] = $this->getData();
-        $this->prepareFilter();
         $this->prepareGrid();
-
+        $this->prepareResult($this->arResult['list']);
         $this->includeComponentTemplate();
     }
 
+
+    public function prepareResult($data, $filterData = null)
+    {
+        $this->arResult['rows_count'] = $this->nav->getRecordCount();
+        $this->arResult['rows'] = $data;
+        $this->arResult['nav'] = $this->nav;
+        $this->arResult['filter_data'] = $filterData;
+    }
 
     public function onPrepareComponentParams($arParams)
     {
@@ -90,6 +107,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
 
     private function getParams($inParams = [])
     {
+        $this->arResult['companyID'] = isset($_REQUEST['idCompany']) ? $_REQUEST['idCompany'] : '';
         $params['searchParameters.shopCodes'] = 5555555;
         $params['page.offset'] = 0;
         $params['page.limit'] = 20;
@@ -118,9 +136,9 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         return $data;
     }
 
-    private function prepareFilter()
+    private function getFilterOptions()
     {
-        $this->arResult['ui_filter'] = [
+        $options = [
             ['id' => 'trackNumber', 'name' => 'Трек-номер', 'type' => 'text', 'default' => true],
             ['id' => 'invoiceNumber', 'name' => 'Номер ЭН', 'type' => 'text', ],
             ['id' => 'orderNumber', 'name' => 'Номер заказа ИМ', 'type' => 'text', ],
@@ -151,38 +169,51 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
             
         ];
         
-        $this->arResult['filterOption'] = new Bitrix\Main\UI\Filter\Options($this->arResult['filter_id']);
-        
-        
-        $this->arResult['filterData'] = $this->arResult['filterOption'] -> getFilter([]);
-        
-        foreach ($this->arResult['filterData'] as $k => $v) {
-            if($k == 'FIND' && $v) {
-                $this->arResult['filterData'][] = array(
-                "LOGIC" => "OR",
-                array("trackNumber" => "%".$v."%"),
-                array("invoiceNumber" => "%".$v."%"),
-                array("orderNumber" => "%".$v."%"),
-                array('createDate' => "%".$v."%"),
-                );
-            } else if ($k == 'trackNumber' && $v) {
-                $this->arResult['filterData']['trackNumber'] = "%".$v."%";
-            } else if ($k == 'invoiceNumber' && $v) {
-                $this->arResult['filterData']['invoiceNumber'] = "%".$v."%";
-            } else if ($k == 'orderNumber' && $v) {
-                $this->arResult['filterData']['orderNumber'] = "%".$v."%";
-            } else if ($k == 'createDate_to' && $v) {
-                $this->arResult['filterData']['createDate'] = "%". explode(' ', $v)[0] ."%";
-            }  else {
-                $this->arResult['filterData'][$k] = $v;
+        return $options;
+    }
+
+    private function getFilter()
+    {
+        $filterOption = new \Bitrix\Main\UI\Filter\Options(static::FILTER_ID);
+        $filterData = $filterOption->getFilter();
+        $filter = [];
+
+        $filter['=%message'] = "%" . $filterData['FIND'] . "%";
+        foreach (static::getFilterOptions() as $filterOption)
+        {
+            $optionName = $filterOption['id'];
+            $optionType = $filterOption['type'];
+
+            if ($optionType === 'text') {
+                if (empty($filterData[$optionName])) {
+                    continue;
+                }
+                $filter[$optionName] = "%" . $filterData[$optionName] . "%";
+            }
+            else if ($optionType === 'date' || $optionType === 'number') {
+                if (empty($filterData[$optionName."_from"])) {
+                    continue;
+                }
+                $filter['>='.$optionName] = $filterData[$optionName."_from"]; 
+                $filter['<='.$optionName] = $filterData[$optionName."_to"]; 
+            }
+            else if ($optionType === 'list') {
+                if (empty($filterData[$optionName])) {
+                    continue;
+                }
+                if (!is_array($filterData[$optionName])) {
+                    $filterData[$optionName] = [$filterData[$optionName]];
+                }
+                $filter['@'.$optionName] = $filterData[$optionName];
             }
         }
-        $this->arResult['filterData']['ACTIVE'] = "Y";
+
+        return $filter;
     }
 
     private function prepareGrid()
     {
-        $this->arResult['grid_options'] = new GridOptions($this->arResult['list_id']);
+        $this->arResult['grid_options'] = new GridOptions($this->arResult['grid_id']);
         $this->arResult['sort'] = $this->arResult['grid_options'] -> GetSorting(['sort' => ['DATE_CREATE' => 'DESC'], 'vars' => ['by' => 'by', 'order' => 'order']]);
 
         $this->arResult['columns'] = [];
@@ -288,5 +319,10 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
             return self::$arIssueType[$arData[0]];
         }
         return $arData;
+    }
+
+    public function setPageSizeAction($pageSize)
+    {
+        var_dump($pageSize); die();
     }
 }

@@ -52,7 +52,9 @@ $APPLICATION->IncludeComponent(
         'USE_PADDING' => true,
         'POPUP_COMPONENT_NAME' => 'wizart:orders_grid',
         'POPUP_COMPONENT_TEMPLATE_NAME' => '',
-        'POPUP_COMPONENT_PARAMS' => $componentParams
+        "USE_UI_TOOLBAR" => "Y",
+        'POPUP_COMPONENT_PARAMS' => $componentParams,
+        
     ]
 );
 
