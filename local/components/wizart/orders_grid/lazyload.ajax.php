@@ -1,7 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_before.php');
 use Bitrix\Main\Application;
-use Bitrix\Main\Diag\Debug as Debug; // Удали
 
 define('NO_KEEP_STATISTIC', 'Y');
 define('NO_AGENT_STATISTIC', 'Y');
@@ -54,7 +53,6 @@ $APPLICATION->IncludeComponent(
         'POPUP_COMPONENT_TEMPLATE_NAME' => '',
         "USE_UI_TOOLBAR" => "Y",
         'POPUP_COMPONENT_PARAMS' => $componentParams,
-        
     ]
 );
 
