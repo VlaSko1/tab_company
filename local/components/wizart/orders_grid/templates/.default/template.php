@@ -37,7 +37,7 @@ use Bitrix\Main\Localization\Loc;
 		'GRID_ID' => $arResult['grid_id'],
 		'COLUMNS' => $arResult['columns'],
 		'ROWS' => $arResult['list'],
-		"NAV_OBJECT" => array(), //$arResult['nav'],
+		"NAV_OBJECT" => $arResult['nav'],
 		'SHOW_ROW_CHECKBOXES' => true,
 		'AJAX_MODE' => 'Y',
 		'AJAX_ID' => \CAjax::getComponentID('bitrix:main.ui.grid', '.default', ''),

@@ -56,36 +56,55 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
     public $arPresets = [
         "ordersForwardAndReturnActive" => [
             "name" => 'Заказы прямого и возвратного потока (активные)',
-			"default" => 'false', // если true - пресет по умолчанию
+			"default" => false, // если true - пресет по умолчанию
 			"fields" => [
-                "withInactive" => "false",
-                "withReturn" => "true",
-            ]
+                "withInactive" => false,
+                "withReturn" => true,
+                'return' => true,
+            ],
+            'filter_rows' => 'withInactive,withReturn,return',
         ],
         "ordersForwardActiveAndNotActive" => [
             "name" => 'Заказы прямого потока (активные и неактивные)',
-			"default" => 'false', // если true - пресет по умолчанию
+			"default" => false, // если true - пресет по умолчанию
 			"fields" => [
-                "withInactive" => "true",
-                "withReturn" => "false",
-            ]
+                "withInactive" => true,
+                "withReturn" => false,
+                'return' => false,
+            ],
+            'filter_rows' => 'withInactive,withReturn,return',
         ],
         "ordersForwardAndReturnActiveAndNotActive" => [
-            "name" => 'Заказы прямого и обратного потока (активные и неактивные)',
-			"default" => 'false', // если true - пресет по умолчанию
+            "name" => 'Заказы прямого и возвратного потока (активные и неактивные)',
+			"default" => false, // если true - пресет по умолчанию
 			"fields" => [
-                "withInactive" => "true",
-                "withReturn" => "true",
-            ]
+                "withInactive" => true,
+                "withReturn" => true,
+                'return' => true,
+            ],
+            'filter_rows' => 'withInactive,withReturn,return',
         ],
         "ordersForwardActive" => [
             "name" => 'Заказы прямого потока (активные)',
-			"default" => 'true', // если true - пресет по умолчанию
+			"default" => true, // если true - пресет по умолчанию
 			"fields" => [
-                "withInactive" => "false",
-                "withReturn" => "false",
-            ]
+                "withInactive" => false,
+                "withReturn" => false,
+                'return' => false,
+            ],
+            'filter_rows' => 'withInactive,withReturn,return',
+            'for_all' => true,
         ],
+        /*'tmp_filter' => [
+            "name" => 'Нет пресетов',
+			"default" => false, // если true - пресет по умолчанию
+			"fields" => [
+                "searchParameters.numberParcels" => '',
+                "searchParameters.invoiceNumber" => '',
+                'createDate' => '',
+            ],
+            'filter_rows' => 'searchParameters.numberParcels,searchParameters.invoiceNumber,createDate',
+        ],*/
     ];
 
     private static  $fild1CName = '';
@@ -93,6 +112,8 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
     public function executeComponent()
     {
         $this->arResult['grid_id'] = static::GRID_ID;
+
+        $this->arResult['grid_options'] = new GridOptions($this->arResult['grid_id']);
         //$this->arResult['filter_id'] = static::FILTER_ID;
        /* $this->grid = new \Bitrix\Main\Grid\Options($this->arResult['grid_id']);
         $sortOptions = $this->grid->GetSorting();
@@ -103,6 +124,8 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
             ->setPageSize($nav_params["nPageSize"])
             ->initFromUri();*/
         
+        $this->getNavParam();
+                
         $this->getAllFilter();
         $this->arResult['params'] = $this->getParams($this->arResult['filterData']);
 
@@ -111,6 +134,21 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         $this->includeComponentTemplate();
     }
 
+    private function getNavParam()
+    {
+        $this->arResult['nav_params'] = $this->arResult['grid_options'] -> GetNavParams();
+        
+        $this->arResult['nav'] = new PageNavigation($this->arResult['grid_id']);
+        $this->arResult['nav'] -> allowAllRecords(true)
+                        -> setPageSize($this->arResult['nav_params']['nPageSize'])
+                        -> initFromUri();
+        
+        if ($this->arResult['nav']->allRecordsShown()) {
+            $this->arResult['nav_params'] = false;
+        } else {
+            $this->arResult['nav_params']['iNumPage'] = $this->arResult['nav'] -> getCurrentPage();
+        }
+    }
 
     public function getAllFilter() 
     {
@@ -118,10 +156,15 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
 
         
 
-        $this->arResult['filterOption'] = new Bitrix\Main\UI\Filter\Options($this->arResult['grid_id']);
+        $this->arResult['filterOption'] = new Bitrix\Main\UI\Filter\Options($this->arResult['grid_id'], $this->arPresets);
         
+
         //$this->arResult['filterOption']->setPresets($this->arPresets);
+
         $this->arResult['filterData'] = $this->arResult['filterOption'] -> getFilter([]);
+        
+    
+
 
         foreach ($this->arResult['filterData'] as $k => $v) {
             $v = strip_tags($v);
@@ -147,7 +190,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
                 $this->arResult['filterData'][$k] = $v;
             }
         }
-        Debug::writeToFile($this->arResult['filterOption']->getPresets(), '', 'local/logs/bugs.log');
+        
 
     }
 
@@ -215,6 +258,11 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
                 $params['withReturn'] = false;
             }
         }
+
+        
+        Debug::writeToFile($this->arResult['nav'] -> allRecordsShown(),'', '/local/logs/bugs.log');
+        //Debug::writeToFile($this->arResult['nav_params'],'', '/local/logs/bugs.log');
+        var_dump($this->arResult['nav_params']);
         /*if ($inParams['PRESET_ID']) {
             var_dump($this->arPresets[$inParams['PRESET_ID']]['fields']); 
             //setCurrentPreset
@@ -229,8 +277,8 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
              searchParameters.shopCodes. Пока заглушка для тестов. 
         */
         $params['searchParameters.shopCodes'] = 5555555;
-        $params['page.offset'] = 0;
-        $params['page.limit'] = 20;
+        $params['page.offset'] = ($this->arResult['nav_params']['iNumPage'] - 1) * $this->arResult['nav_params']['nPageSize'];
+        $params['page.limit'] = $this->arResult['nav_params']['nPageSize'];
         return $params;
     }
 
@@ -307,12 +355,10 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
     {
         $this->arResult['data'] = $this->getData();
         $this->arResult['total'] = $this->arResult['data']['total'];
+        $this->arResult['nav']->setRecordCount($this->arResult['total']);
 
-
-
-        $this->arResult['grid_options'] = new GridOptions($this->arResult['grid_id']);
         $this->arResult['sort'] = $this->arResult['grid_options'] -> GetSorting(['sort' => ['createDate' => 'DESC'], 'vars' => ['by' => 'by', 'order' => 'order']]);
-
+        
         $this->arResult['columns'] = [];
         $this->arResult['columns'][] = ['id' => 'trackNumber', 'name' => 'Трек-номер', 'sort' => 'trackNumber', 'default' => true];
         $this->arResult['columns'][] = ['id' => 'invoiceNumber', 'name' => 'Номер ЭН', 'sort' => 'invoiceNumber', 'default' => true];
@@ -381,6 +427,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
             
         }
 
+        // Пока сортировку не делаем
         //$this->sortData(); // TODO переделаю логику - формируем массив элементов грида, фильтруем их (если надо), затем сортируем, а полученный 
         // результат присваиваем $this->arResult['list'][] = ['data' => $row[i]] перебором в цикле
         
