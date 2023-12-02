@@ -164,7 +164,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         $this->arResult['filterData'] = $this->arResult['filterOption'] -> getFilter([]);
         
     
-
+        //Debug::writeToFile($this->arResult['filterOption']->getOptions(),'', '/local/logs/bugs.log');
 
         foreach ($this->arResult['filterData'] as $k => $v) {
             $v = strip_tags($v);
@@ -189,6 +189,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
             } else {
                 $this->arResult['filterData'][$k] = $v;
             }
+            Debug::writeToFile($k,'', '/local/logs/bugs.log');
         }
         
 
@@ -260,9 +261,9 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         }
 
         
-        Debug::writeToFile($this->arResult['nav'] -> allRecordsShown(),'', '/local/logs/bugs.log');
+        //Debug::writeToFile($this->arResult['nav'] -> allRecordsShown(),'', '/local/logs/bugs.log');
         //Debug::writeToFile($this->arResult['nav_params'],'', '/local/logs/bugs.log');
-        var_dump($this->arResult['nav_params']);
+        //var_dump($this->arResult['nav_params']);
         /*if ($inParams['PRESET_ID']) {
             var_dump($this->arPresets[$inParams['PRESET_ID']]['fields']); 
             //setCurrentPreset

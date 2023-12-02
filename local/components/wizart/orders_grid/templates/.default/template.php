@@ -5,6 +5,7 @@ use Bitrix\Main\Localization\Loc;
 \Bitrix\Main\Loader::includeModule('ui'); */
 
 ?>
+
 <?php if (!empty($arParams['AJAX_LOADER'])) { ?>
     <script>
        BX.addCustomEvent('Grid::beforeRequest', function (gridData, argse) {
