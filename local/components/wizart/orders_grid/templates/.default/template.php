@@ -6,25 +6,13 @@ use Bitrix\Main\Localization\Loc;
 
 ?>
 
-<?php if (!empty($arParams['AJAX_LOADER'])) { ?>
-    <script>
-       BX.addCustomEvent('Grid::beforeRequest', function (gridData, argse) {
-            if (argse.gridId != '<?=$arResult['grid_id'];?>') {
-                return;
-            }
-
-            argse.method = 'POST'
-            argse.data = <?= \Bitrix\Main\Web\Json::encode($arParams['AJAX_LOADER']['data']) ?>
-        });
-    </script>
-<?php } ?>
-
 <?
 	$APPLICATION->IncludeComponent(
 		'bitrix:main.ui.filter',
 		'',
 		[
 			'FILTER_ID' => $arResult['grid_id'],
+			'FILTER_PRESETS' => $arResult['FILTER_PRESETS'],
 			'GRID_ID' => $arResult['grid_id'],
 			'FILTER' => $arResult['filter'],
 			'ENABLE_LIVE_SEARCH' => false, 
@@ -66,3 +54,15 @@ use Bitrix\Main\Localization\Loc;
 		'AJAX_OPTION_HISTORY'       => 'N',
 	]);
 ?>
+<?php if (!empty($arParams['AJAX_LOADER'])) { ?>
+    <script>
+       BX.addCustomEvent('Grid::beforeRequest', function (gridData, argse) {
+            if (argse.gridId != '<?=$arResult['grid_id'];?>') {
+                return;
+            }
+
+            argse.method = 'POST'
+            argse.data = <?= \Bitrix\Main\Web\Json::encode($arParams['AJAX_LOADER']['data']) ?>
+        });
+    </script>
+<?php } ?>

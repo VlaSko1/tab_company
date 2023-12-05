@@ -56,11 +56,10 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
     public $arPresets = [
         "ordersForwardAndReturnActive" => [
             "name" => 'Заказы прямого и возвратного потока (активные)',
-			"default" => false, // если true - пресет по умолчанию
+			"default" => 'false', // если true - пресет по умолчанию
 			"fields" => [
-                "withInactive" => false,
-                "withReturn" => true,
-                'return' => true,
+                "withInactive" => 'false',
+                "withReturn" => 'true',
             ],
             'filter_rows' => 'withInactive,withReturn,return',
         ],
@@ -68,32 +67,28 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
             "name" => 'Заказы прямого потока (активные и неактивные)',
 			"default" => false, // если true - пресет по умолчанию
 			"fields" => [
-                "withInactive" => true,
-                "withReturn" => false,
-                'return' => false,
+                "withInactive" => 'true',
+                "withReturn" => 'false',
             ],
             'filter_rows' => 'withInactive,withReturn,return',
         ],
         "ordersForwardAndReturnActiveAndNotActive" => [
             "name" => 'Заказы прямого и возвратного потока (активные и неактивные)',
-			"default" => false, // если true - пресет по умолчанию
+			"default" => 'false', // если true - пресет по умолчанию
 			"fields" => [
-                "withInactive" => true,
-                "withReturn" => true,
-                'return' => true,
+                "withInactive" => 'true',
+                "withReturn" => 'true',
             ],
             'filter_rows' => 'withInactive,withReturn,return',
         ],
         "ordersForwardActive" => [
             "name" => 'Заказы прямого потока (активные)',
-			"default" => true, // если true - пресет по умолчанию
+			"default" => 'true', // если true - пресет по умолчанию
 			"fields" => [
-                "withInactive" => false,
-                "withReturn" => false,
-                'return' => false,
+                "withInactive" => 'false',
+                "withReturn" => 'false',
             ],
             'filter_rows' => 'withInactive,withReturn,return',
-            'for_all' => true,
         ],
         /*'tmp_filter' => [
             "name" => 'Нет пресетов',
@@ -112,7 +107,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
     public function executeComponent()
     {
         $this->arResult['grid_id'] = static::GRID_ID;
-
+        
         $this->arResult['grid_options'] = new GridOptions($this->arResult['grid_id']);
         //$this->arResult['filter_id'] = static::FILTER_ID;
        /* $this->grid = new \Bitrix\Main\Grid\Options($this->arResult['grid_id']);
@@ -156,10 +151,10 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
 
         
 
-        $this->arResult['filterOption'] = new Bitrix\Main\UI\Filter\Options($this->arResult['grid_id'], $this->arPresets);
-        
-
-        //$this->arResult['filterOption']->setPresets($this->arPresets);
+        $this->arResult['filterOption'] = new Bitrix\Main\UI\Filter\Options($this->arResult['grid_id']);//, $this->arPresets);
+       
+        $this->arResult['FILTER_PRESETS'] = $this->arPresets;
+        //$this->arResult['filterOption']->setPresets(array('FILTER_PRESETS'=>$this->arPresets));
 
         $this->arResult['filterData'] = $this->arResult['filterOption'] -> getFilter([]);
         
@@ -189,7 +184,6 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
             } else {
                 $this->arResult['filterData'][$k] = $v;
             }
-            Debug::writeToFile($k,'', '/local/logs/bugs.log');
         }
         
 
@@ -255,8 +249,8 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
                     $params[$key] = $value;
                 }
             } else {
-                $params['withInactive'] = false;
-                $params['withReturn'] = false;
+                $params['withInactive'] = 'false';
+                $params['withReturn'] = 'false';
             }
         }
 
@@ -305,13 +299,15 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
     {
         $fullLink = self::$httpLink . self::$rest . '?token=' . self::$token;
         
+        Debug::writeToFile($fullLink . '&' . http_build_query($this->arResult['params']),'', '/local/logs/bugs.log');
+
         $ch = curl_init();
         $token = self::$token;
         curl_setopt($ch, CURLOPT_URL, $fullLink . '&' . http_build_query($this->arResult['params']));
         curl_setopt($ch, CURLOPT_HTTPHEADER, array("Authorization: Bearer {$token}"));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    
+
         $response = curl_exec($ch);
         $data = json_decode($response, true);
        // var_dump($fullLink . '&' . http_build_query($this->arResult['params']));
