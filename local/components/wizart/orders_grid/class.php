@@ -90,16 +90,6 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
             ],
             'filter_rows' => 'withInactive,withReturn,return',
         ],
-        /*'tmp_filter' => [
-            "name" => 'Нет пресетов',
-			"default" => false, // если true - пресет по умолчанию
-			"fields" => [
-                "searchParameters.numberParcels" => '',
-                "searchParameters.invoiceNumber" => '',
-                'createDate' => '',
-            ],
-            'filter_rows' => 'searchParameters.numberParcels,searchParameters.invoiceNumber,createDate',
-        ],*/
     ];
 
     private static  $fild1CName = '';
@@ -382,7 +372,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
 
             $arRow = [
                 "trackNumber" => $data[$i]['trackNumber'],
-                "invoiceNumber" => $data[$i]['invoiceNumber'],
+                "invoiceNumber" => $this->getLinkForPageOrder($data[$i]),
                 "orderNumber" => $data[$i]['orderNumber'],
                 "createDate" => $this->getDateTimeStrFromStr($data[$i]['createDate']),
                 "storeDate" => $data[$i]['storeDate'],
@@ -430,6 +420,11 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         
     }
 
+    private function getLinkForPageOrder($data)
+    {
+        $dataString = json_encode($data);
+        return '<a href=' . "/company/order/*{$dataString}" . '>' . $data['invoiceNumber'] . '</a>';
+    }
     private function sortData()
     {
         if ($this->arResult['sort']['sort']) {
