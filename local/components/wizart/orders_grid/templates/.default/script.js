@@ -6,14 +6,14 @@ BX.ready(function () {
             new RegExp('/company/order/', 'i')
           ],
           handler: function (event, link) {
-            event.preventDefault();
+            
             const arLink = link.url.split('/');
             let stringData = arLink[arLink.length - 1];
             
             // Создаём уникальный идентификатор
             ID = Math.floor(Math.random() * Math.pow(10, 15));
             BX.SidePanel.Instance.open("wizart:order_grid" + ID, { 
-              cacheable: true,
+              cacheable: false,
               contentCallback: function (slider) {
                 return new Promise(function (resolve, reject) {
                   BX.ajax.runComponentAction('wizart:order.view', 'showOrder', { 
@@ -32,9 +32,9 @@ BX.ready(function () {
                 }).then(null, function (r) { console.log(r) });
               },
               animationDuration: 100,
-              width: 900
+              width: '100%'
             });
-  
+            event.preventDefault();
   
           }
   

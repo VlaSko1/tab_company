@@ -127,7 +127,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
     {
         $this->arResult['filter'] = $this->getFilterOptions();
         
-        $this->arResult['filterOption'] = new Bitrix\Main\UI\Filter\Options($this->arResult['grid_id']);//, $this->arPresets);
+        $this->arResult['filterOption'] = new Bitrix\Main\UI\Filter\Options($this->arResult['grid_id']);
        
         $this->arResult['FILTER_PRESETS'] = $this->arPresets;
 
@@ -387,6 +387,8 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         $trackNumber = $data['trackNumber'];
         return '<a href=' . "/company/order/{$trackNumber}+{$this->arResult['shopCodes']}" . '>' . $data['invoiceNumber'] . '</a>';
     }
+
+    // Пока не используется.
     private function sortData()
     {
         if ($this->arResult['sort']['sort']) {
