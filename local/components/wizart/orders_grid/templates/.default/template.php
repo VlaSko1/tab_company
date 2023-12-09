@@ -1,12 +1,20 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
-/*use Bitrix\Main\Grid\Panel\Actions;
-use Bitrix\Main\Localization\Loc;
-\Bitrix\Main\Loader::includeModule('ui'); */
+use Bitrix\Main\SystemException;
+\Bitrix\Main\UI\Extension::load("ui.dialogs.messagebox");
 
 ?>
+<?
+	if ($arResult['error']) {
+?>
+	<script>
+		BX.UI.Dialogs.MessageBox.alert("<h3 style='text-align: center'><?= $arResult['error'] ?></h3>");
+	</script>
+<?	} ?>
+	
 
 <?
+	
 	$APPLICATION->IncludeComponent(
 		'bitrix:main.ui.filter',
 		'',
@@ -16,12 +24,14 @@ use Bitrix\Main\Localization\Loc;
 			'GRID_ID' => $arResult['grid_id'],
 			'FILTER' => $arResult['filter'],
 			'ENABLE_LIVE_SEARCH' => false, 
-			'ENABLE_LABEL' => true,
+			'ENABLE_LABEL' => false,
 		]
 	
 	);
+
 ?>
 <?
+
 	$APPLICATION->IncludeComponent('bitrix:main.ui.grid', '', [
 		'GRID_ID' => $arResult['grid_id'],
 		'COLUMNS' => $arResult['columns'],
@@ -53,6 +63,7 @@ use Bitrix\Main\Localization\Loc;
 		'ALLOW_PIN_HEADER'          => true,
 		'AJAX_OPTION_HISTORY'       => 'N',
 	]);
+
 ?>
 <?php if (!empty($arParams['AJAX_LOADER'])) { ?>
     <script>

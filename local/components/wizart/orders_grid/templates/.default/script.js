@@ -1,7 +1,3 @@
-/*BX.ready(function() {
-    let wrapperPagg = document.getElementsByClassName('main-ui-pagination')[0];
-    console.log(wrapperPagg);
-})*/
 BX.ready(function () {
     BX.SidePanel.Instance.bindAnchors({
       rules: [
@@ -11,16 +7,19 @@ BX.ready(function () {
           ],
           handler: function (event, link) {
             event.preventDefault();
-            const arLink = link.url.split('*');
+            const arLink = link.url.split('/');
             let stringData = arLink[arLink.length - 1];
-            BX.SidePanel.Instance.open("wizart:order_grid" + ID, { // TODO Укажи уникальный идентификатор
+            
+            // Создаём уникальный идентификатор
+            ID = Math.floor(Math.random() * Math.pow(10, 15));
+            BX.SidePanel.Instance.open("wizart:order_grid" + ID, { 
               cacheable: true,
               contentCallback: function (slider) {
                 return new Promise(function (resolve, reject) {
-                  BX.ajax.runComponentAction('wizart:view_sidepanel', 'showSidepanel', { // TODO напиши компонент для отображения страницы с данными заказа
+                  BX.ajax.runComponentAction('wizart:order.view', 'showOrder', { 
                     mode: 'ajax',
                     data: {
-                      ID_ELEMENT: ID
+                      stringData
                     }
                   }).then(function (response) {
                     resolve({ html: response.data.html });
@@ -33,7 +32,7 @@ BX.ready(function () {
                 }).then(null, function (r) { console.log(r) });
               },
               animationDuration: 100,
-              width: 800
+              width: 900
             });
   
   

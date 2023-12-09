@@ -7,8 +7,8 @@ use Bitrix\Main\ErrorCollection;
 use Bitrix\Main\Engine\ActionFilter;
 use Bitrix\Main\Grid\Options as GridOptions;
 use Bitrix\Main\UI\PageNavigation;
-
-use Bitrix\Main\Diag\Debug as Debug;
+use \Bitrix\Main;
+use \Bitrix\Crm;
 
 \Bitrix\Main\Loader::includeModule('ui');
 
@@ -22,24 +22,21 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
 {
     protected $errorCollection;
     
-
     private const  GRID_ID = 'order_grid';
 
-    //private const FILTER_ID = 'order_filter';
+    public static  $httpLink = 'https://middle-crm-predprod.middle-task.boxberry.ru/';
 
-    private static  $httpLink = 'https://middle-crm-predprod.middle-task.boxberry.ru/';
+    public static $rest = 'v1/parcels';
 
-    private static $rest = 'v1/parcels';
+    public static  $token = 'Hello';
 
-    private static  $token = 'Hello';
-
-    private static $arPaymentType = [
+    public static $arPaymentType = [
         1 => 'Предоплата',
         2 => 'Наличные',
         3 => 'Эквайринг',
     ];
 
-    private static $arDeliveryType = [
+    public static $arDeliveryType = [
         0 => 'Не определён',
         1 => 'Доставка до ПВЗ',
         2 => 'Курьерская доставка',
@@ -47,7 +44,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         4 => 'Курьерская доставка 2.0',
     ];
 
-    private static $arIssueType = [
+    public static $arIssueType = [
         0 => "Без вскрытия",
         1 => "Со вскрытием",
         2 => "Частичная выдача",
@@ -92,22 +89,13 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         ],
     ];
 
-    private static  $fild1CName = '';
+    public static  $fild1CName = 'UF_CRM_1520882978';
 
     public function executeComponent()
     {
         $this->arResult['grid_id'] = static::GRID_ID;
         
         $this->arResult['grid_options'] = new GridOptions($this->arResult['grid_id']);
-        //$this->arResult['filter_id'] = static::FILTER_ID;
-       /* $this->grid = new \Bitrix\Main\Grid\Options($this->arResult['grid_id']);
-        $sortOptions = $this->grid->GetSorting();
-        $this->sortOptions = $sortOptions["sort"];
-        $this->nav = new \Bitrix\Main\UI\PageNavigation( $this->arResult['grid_id']);
-        $nav_params = $this->grid->GetNavParams();
-        $this->nav->allowAllRecords(true)
-            ->setPageSize($nav_params["nPageSize"])
-            ->initFromUri();*/
         
         $this->getNavParam();
                 
@@ -115,7 +103,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         $this->arResult['params'] = $this->getParams($this->arResult['filterData']);
 
         $this->prepareGrid();
-        //$this->prepareResult($this->arResult['list']);
+        
         $this->includeComponentTemplate();
     }
 
@@ -138,18 +126,12 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
     public function getAllFilter() 
     {
         $this->arResult['filter'] = $this->getFilterOptions();
-
         
-
         $this->arResult['filterOption'] = new Bitrix\Main\UI\Filter\Options($this->arResult['grid_id']);//, $this->arPresets);
        
         $this->arResult['FILTER_PRESETS'] = $this->arPresets;
-        //$this->arResult['filterOption']->setPresets(array('FILTER_PRESETS'=>$this->arPresets));
 
         $this->arResult['filterData'] = $this->arResult['filterOption'] -> getFilter([]);
-        
-    
-        //Debug::writeToFile($this->arResult['filterOption']->getOptions(),'', '/local/logs/bugs.log');
 
         foreach ($this->arResult['filterData'] as $k => $v) {
             $v = strip_tags($v);
@@ -178,14 +160,6 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         
 
     }
-
-    /*public function prepareResult($data, $filterData = null)
-    {
-        //$this->arResult['rows_count'] = $this->nav->getRecordCount();
-        $this->arResult['rows'] = $data;
-        $this->arResult['nav'] = $this->nav;
-        $this->arResult['filter_data'] = $filterData;
-    }*/
 
     public function onPrepareComponentParams($arParams)
     {
@@ -244,39 +218,40 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
             }
         }
 
-        
-        //Debug::writeToFile($this->arResult['nav'] -> allRecordsShown(),'', '/local/logs/bugs.log');
-        //Debug::writeToFile($this->arResult['nav_params'],'', '/local/logs/bugs.log');
-        //var_dump($this->arResult['nav_params']);
-        /*if ($inParams['PRESET_ID']) {
-            var_dump($this->arPresets[$inParams['PRESET_ID']]['fields']); 
-            //setCurrentPreset
-            $this->setPresets($inParams['PRESET_ID']);
-        } else {
-            $this->setPresets('none_preset');
-        }*/
-
+        // Получаем код компании
         $this->arResult['companyID'] = isset($_REQUEST['idCompany']) ? $_REQUEST['idCompany'] : '';
-        /*
-            здесь находим поле "Код контрагента в 1С" по ID компании (если оно, поле есть) и подставляем в параметр
-             searchParameters.shopCodes. Пока заглушка для тестов. 
-        */
-        $params['searchParameters.shopCodes'] = 5555555;
+        
+        
+        // Получаем "Код контрагента в 1С" по которому будем искать заказы
+        $this->arResult['shopCodes'] = $this->getCodeCounterparty();
+
+        if (!$this->arResult['shopCodes']) {
+            $this->arResult['error'] = 'Нет данных. Не заполнен код компании.';
+        }
+
+        $params['searchParameters.shopCodes'] = $this->arResult['shopCodes'];  //5555555
         $params['page.offset'] = ($this->arResult['nav_params']['iNumPage'] - 1) * $this->arResult['nav_params']['nPageSize'];
         $params['page.limit'] = $this->arResult['nav_params']['nPageSize'];
         return $params;
     }
 
-    private function setPresets(string $presetId) 
+    private function getCodeCounterparty()
     {
-        foreach ($this->arPresets as $key => $value) {
-            if ($key === $presetId) {
-                $this->arPresets[$key]['default'] = 'true';
-            } else {
-                $this->arPresets[$key]['default'] = 'false';
-            }
+        Main\Loader::IncludeModule('crm');
+
+        $companies = Crm\CompanyTable::getList([
+            'filter' => ['ID' => $this->arResult['companyID']],
+            'select' => [
+                self::$fild1CName,
+            
+            ]
+        ]);
+        
+        foreach ($companies as $company)
+        {
+            $result = $company[self::$fild1CName];
         }
-        //$this->arResult['PRESETS'] = $this->arPresets;
+        return $result;
     }
 
 
@@ -287,10 +262,8 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
      */
     private function getData(array $params=[]) 
     {
-        $fullLink = self::$httpLink . self::$rest . '?token=' . self::$token;
+        $fullLink = self::$httpLink . self::$rest . '?token=' . 'token';
         
-        Debug::writeToFile($fullLink . '&' . http_build_query($this->arResult['params']),'', '/local/logs/bugs.log');
-
         $ch = curl_init();
         $token = self::$token;
         curl_setopt($ch, CURLOPT_URL, $fullLink . '&' . http_build_query($this->arResult['params']));
@@ -300,7 +273,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
 
         $response = curl_exec($ch);
         $data = json_decode($response, true);
-       // var_dump($fullLink . '&' . http_build_query($this->arResult['params']));
+      
         return $data;
     }
 
@@ -341,8 +314,6 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
     private function prepareGrid()
     {
         $this->arResult['data'] = $this->getData();
-        $this->arResult['total'] = $this->arResult['data']['total'];
-        $this->arResult['nav']->setRecordCount($this->arResult['total']);
 
         $this->arResult['sort'] = $this->arResult['grid_options'] -> GetSorting(['sort' => ['createDate' => 'DESC'], 'vars' => ['by' => 'by', 'order' => 'order']]);
         
@@ -362,11 +333,21 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         $this->arResult['columns'][] = ['id' => 'issueType', 'name' => 'Тип выдачи', 'sort' => 'issueType', 'default' => true];
         $this->arResult['columns'][] = ['id' => 'barcodes', 'name' => 'Места', 'sort' => 'barcodes', 'default' => true];
 
-        if (!$this->arResult['total']) {
+        if ($this->arResult['data']['error'] && !$this->arResult['error']) {
+            $this->arResult['error'] = 'Данные о заказах не были получены. Обратитесь в службу поддержки, если ошибка повторяется.';
             $this->arResult['list'] = [];
             return;
+        } else if (!$this->arResult['data']['total']) {
+            $this->arResult['list'] = [];
+            if (!$this->arResult['error']) {
+                $this->arResult['error'] = 'Нет данных.';
+            }
+            return;
         }
-        
+        // Если ошибок нет, получаем общее количество заказов
+        $this->arResult['total'] = $this->arResult['data']['total'];
+        $this->arResult['nav']->setRecordCount($this->arResult['total']);
+
         $data = $this->arResult['data']['parcels'];
         for ($i = 0; $i < count($data); $i++) {
 
@@ -374,16 +355,16 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
                 "trackNumber" => $data[$i]['trackNumber'],
                 "invoiceNumber" => $this->getLinkForPageOrder($data[$i]),
                 "orderNumber" => $data[$i]['orderNumber'],
-                "createDate" => $this->getDateTimeStrFromStr($data[$i]['createDate']),
+                "createDate" => self::getDateTimeStrFromStr($data[$i]['createDate']),
                 "storeDate" => $data[$i]['storeDate'],
                 "return" => $data[$i]['return'] ? 'Да' : 'Нет',
-                "declaredValue" => $this->getStrCost($data[$i]['declaredValue']),
-                "amountPay" => $this->getStrCost($data[$i]['amountPay']),
-                "deliveryCost" => $this->getStrCost($data[$i]['deliveryCost']),
-                "paymentType" => $this->getPaymentType($data[$i]['paymentType']),
+                "declaredValue" => self::getStrCost($data[$i]['declaredValue']),
+                "amountPay" => self::getStrCost($data[$i]['amountPay']),
+                "deliveryCost" => self::getStrCost($data[$i]['deliveryCost']),
+                "paymentType" => self::getPaymentType($data[$i]['paymentType']),
                 "actualWeight" => $data[$i]['actualWeight'],
-                "deliveryType" => $this->getDeliveryType($data[$i]['deliveryType']),
-                "issueType" => $this->getIssueType($data[$i]['issueType']),
+                "deliveryType" => self::getDeliveryType($data[$i]['deliveryType']),
+                "issueType" => self::getIssueType($data[$i]['issueType']),
                 "barcodes" => count($data[$i]['barcodes']),
             ];
 
@@ -392,25 +373,6 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
                     'data' => $arRow,
                 ];
             }
-        
-            /*$this->arResult['list'][] = [
-                'data' => [
-                            "trackNumber" => $data[$i]['trackNumber'],
-                            "invoiceNumber" => $data[$i]['invoiceNumber'],
-                            "orderNumber" => $data[$i]['orderNumber'],
-                            "createDate" => $this->getDateTimeStrFromStr($data[$i]['createDate']),
-                            "storeDate" => $data[$i]['storeDate'],
-                            "return" => $data[$i]['return'] ? 'Да' : 'Нет',
-                            "declaredValue" => $this->getStrCost($data[$i]['declaredValue']),
-                            "amountPay" => $this->getStrCost($data[$i]['amountPay']),
-                            "deliveryCost" => $this->getStrCost($data[$i]['deliveryCost']),
-                            "paymentType" => $this->getPaymentType($data[$i]['paymentType']),
-                            "actualWeight" => $data[$i]['actualWeight'],
-                            "deliveryType" => $this->getDeliveryType($data[$i]['deliveryType']),
-                            "issueType" => $this->getIssueType($data[$i]['issueType']),
-                            "barcodes" => count($data[$i]['barcodes']),
-                    ],
-            ];*/
             
         }
 
@@ -420,19 +382,17 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         
     }
 
-    private function getLinkForPageOrder($data)
+    public function getLinkForPageOrder($data)
     {
-        $dataString = json_encode($data);
-        return '<a href=' . "/company/order/*{$dataString}" . '>' . $data['invoiceNumber'] . '</a>';
+        $trackNumber = $data['trackNumber'];
+        return '<a href=' . "/company/order/{$trackNumber}+{$this->arResult['shopCodes']}" . '>' . $data['invoiceNumber'] . '</a>';
     }
     private function sortData()
     {
         if ($this->arResult['sort']['sort']) {
             $sortField = array_key_first($this->arResult['sort']['sort']);
             $sortType = $this->arResult['sort']['sort'][$sortField];
-            //var_dump($sortField);
-            //var_dump($sortType);
-            //var_dump($this->arResult['list'][0]);
+           
             if ($sortType === 'asc') {//desc
                 uasort($this->arResult['list'], function ($a, $b) {
                     return ($a[$sortField] < $b[$sortField]) ? -1 : 1;
@@ -462,7 +422,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         return false;
     }
     
-    private function getDateTimeStrFromStr(string $stringDate)
+    public static function getDateTimeStrFromStr(string $stringDate)
     {
         $dateObj = date_create($stringDate);
         return date_format($dateObj, "d.m.Y H:i:s");
@@ -474,7 +434,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         return date_format($dateObj, "Y-m-d");
     }
 
-    private function getStrCost(int | null $intCost)
+    public static function getStrCost(int | null $intCost)
     {
         if ($intCost === 0) {
             return 0;
@@ -508,7 +468,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         return $strCostResult;
     }
 
-    private function getPaymentType(int $numberPaymentType)
+    public static function getPaymentType(int $numberPaymentType)
     {
         if (array_key_exists($numberPaymentType, self::$arPaymentType)) {
             return self::$arPaymentType[$numberPaymentType];
@@ -516,7 +476,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         return $numberPaymentType;
     }
 
-    private function getDeliveryType(int $numberDeliveryType)
+    public static function getDeliveryType(int $numberDeliveryType)
     {
         if (array_key_exists($numberDeliveryType, self::$arDeliveryType)) {
             return self::$arDeliveryType[$numberDeliveryType];
@@ -524,7 +484,7 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         return $numberDeliveryType;
     }
 
-    private function getIssueType(array $arData)
+    public static function getIssueType(array $arData)
     {
         if (array_key_exists($arData[0], self::$arIssueType)) {
             return self::$arIssueType[$arData[0]];
@@ -532,8 +492,4 @@ class AjaxComponent extends CBitrixComponent implements Controllerable
         return $arData;
     }
 
-    public function setPageSizeAction($pageSize)
-    {
-        //var_dump($pageSize); die();
-    }
 }

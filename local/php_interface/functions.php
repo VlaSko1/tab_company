@@ -47,13 +47,12 @@ function onEntityDetailsTabs($event)
 
     $eventParameters = $property->getValue($event);
 
-    $idCompany = $entityID;
     $tabs[] = array (                            
         'id' => 'store_orders',
          'name' => 'Заказы интернет-магазина',
          'loader' => array(
              'serviceUrl' => '/local/components/wizart/orders_grid/lazyload.ajax.php?site=' . 
-                 \SITE_ID . '&' . \bitrix_sessid_get() . '&idCompany=' . $idCompany ),
+                 \SITE_ID . '&' . \bitrix_sessid_get() . '&idCompany=' . $entityId ),
     );
 
     $eventParameters['tabs'] = $tabs;
